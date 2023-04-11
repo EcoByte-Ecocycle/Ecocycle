@@ -5,7 +5,7 @@ Ecocycle model
 <img width="820" alt="image" src="https://user-images.githubusercontent.com/88193038/231218939-fb79b791-2921-4b2f-971a-b20ab179917a.png">
 
 시스템 프로세스
-<img width="933" alt="image" src="https://user-images.githubusercontent.com/88193038/231219158-0deb56c9-d88d-4427-9ebc-d9774643dfdd.png">
+<img width="820" alt="image" src="https://user-images.githubusercontent.com/88193038/231219158-0deb56c9-d88d-4427-9ebc-d9774643dfdd.png">
 
 기능 별 로직
 <img width="698" alt="image" src="https://user-images.githubusercontent.com/88193038/231219615-c0333141-602f-4796-a119-f470d7f44dd3.png">
