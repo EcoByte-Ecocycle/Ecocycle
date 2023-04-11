@@ -16,7 +16,7 @@ Ecocycle model
 
 <img width="820" alt="image" src="https://user-images.githubusercontent.com/88193038/231218939-fb79b791-2921-4b2f-971a-b20ab179917a.png">
 
-### FrontEnd : Javascript
+FrontEnd : Javascript
 
 BackEnd :  AWS, Java, SpringBoot, 개발 도구 : Intellij
 DB : MySQL
