@@ -1,0 +1,9 @@
+security.jwt.token:
+  secret-key: C7wByAI0jABcazMJaizbRWoVSgeTuo7OVUBX36i8UPw=.utTOIzNQWjXUfW0ej1a5ZBCelG2UMRwGnuJ3/28eGTI=.bxlOlXAS6smCIxfU7MCbDy0D5Deuv4CHPaRKHMk5s6s=
+  expire-length: 300000
+
+oauth2.google:
+  client-id: ''
+  client-secret: ''
+  grant-type: authorization_code
+  redirect-uri: https://test.checkmate.today/login

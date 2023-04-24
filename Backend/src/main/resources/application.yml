@@ -2,6 +2,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
         jdbc:
           time_zone: Asia/Seoul
@@ -11,3 +12,6 @@ spring:
               LOG_QUERIES_SLOWER_THAN_MS: 1000
     hibernate:
       ddl-auto: create # ddl-auto
+
+  profiles:
+    include: oauth
