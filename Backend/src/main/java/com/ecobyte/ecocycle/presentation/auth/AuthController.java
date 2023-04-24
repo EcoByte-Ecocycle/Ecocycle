@@ -1,4 +1,4 @@
-package com.ecobyte.ecocycle.presentation;
+package com.ecobyte.ecocycle.presentation.auth;
 
 import com.ecobyte.ecocycle.application.auth.AuthService;
 import com.ecobyte.ecocycle.dto.response.LoginResponse;
@@ -21,5 +21,4 @@ public class AuthController {
         final LoginResponse loginResponse = authService.loginWithGoogle(code);
         return ResponseEntity.ok(loginResponse);
     }
-
 }
