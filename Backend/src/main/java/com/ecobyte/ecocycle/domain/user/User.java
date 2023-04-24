@@ -39,6 +39,9 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private Integer stamps;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -51,6 +54,7 @@ public class User {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
+        this.stamps = 0;
         this.role = role;
     }
 }
