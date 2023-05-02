@@ -15,6 +15,6 @@ spring:
 
   profiles:
     include: oauth
-
+    
 cors-config:
   allowed-origin: 'http://localhost:3000'
