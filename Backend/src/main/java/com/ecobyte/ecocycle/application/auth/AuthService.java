@@ -5,6 +5,7 @@ import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import com.ecobyte.ecocycle.dto.response.LoginResponse;
+import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import com.ecobyte.ecocycle.support.GoogleClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,11 @@ public class AuthService {
                 .orElseGet(() -> saveGoogleUser(profileResponse));
 
         return createLoginResponse(user.getId());
+    }
+
+    public boolean isAdmin(final Long loginId) {
+        final User expectedAdmin = userRepository.findById(loginId).orElseThrow(UserNotFoundException::new);
+        return expectedAdmin.isAdmin();
     }
 
     private User saveGoogleUser(final GoogleProfileResponse profileResponse) {

@@ -13,6 +13,7 @@ import com.ecobyte.ecocycle.support.GoogleClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -30,6 +31,9 @@ class AuthServiceTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Value("${admin.email}")
+    private String adminEmail;
 
     @DisplayName("구글 OAuth 로그인 시 회원가입이 이루어졌는지 확인한다.")
     @Test
@@ -50,5 +54,17 @@ class AuthServiceTest {
         assertThat(user).usingRecursiveComparison()
                 .ignoringFields("id")
                 .isEqualTo(expectedUser);
+    }
+
+    @DisplayName("마스터 인가를 확인한다.")
+    @Test
+    void isAdmin() {
+        // given
+        System.out.println(adminEmail);
+        final User adminUser = userRepository.findByEmail(adminEmail).get();
+        final Long adminUserId = adminUser.getId();
+
+        // when & then
+        assertThat(authService.isAdmin(adminUserId)).isTrue();
     }
 }
