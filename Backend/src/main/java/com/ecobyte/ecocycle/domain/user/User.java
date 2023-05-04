@@ -57,4 +57,8 @@ public class User {
         this.stamps = 0;
         this.role = role;
     }
+
+    public boolean isAdmin() {
+        return this.role == Role.ADMIN;
+    }
 }
