@@ -10,7 +10,7 @@ class UserTest {
     @DisplayName("사용자가 관리자인지 확인한다")
     @Test
     void isAdmin() {
-        // given & then
+        // given & when
         final User user = new User("azpi", "azpi", "azpi@email.com", Role.ADMIN);
 
         // then
@@ -20,7 +20,7 @@ class UserTest {
     @DisplayName("사용자가 관리자가 아닌 경우인지 확인한다")
     @Test
     void isNotAdmin() {
-        // given & then
+        // given & when
         final User user = new User("azpi", "azpi", "azpi@email.com", Role.USER);
 
         // then
