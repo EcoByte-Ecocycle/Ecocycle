@@ -23,18 +23,10 @@ public class UserAcceptanceTest extends AcceptanceTest {
                 .willReturn("something");
         given(googleClient.getProfileResponse(anyString()))
                 .willReturn(new GoogleProfileResponse("azpi@gmail.com", "azpi"));
-        final String accessToken = RestAssured.given().log().all()
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().post("/login?code=anyCode")
-                .then().log().all()
-                .extract().jsonPath().get("accessToken");
+        final String accessToken = getAccessToken();
 
         // when
-        final ValidatableResponse userResponse = RestAssured.given().log().all()
-                .auth().oauth2(accessToken)
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().get("/users/me")
-                .then().log().all();
+        final ValidatableResponse userResponse = get("/users/me", accessToken);
 
         // then
         userResponse.statusCode(OK.value())

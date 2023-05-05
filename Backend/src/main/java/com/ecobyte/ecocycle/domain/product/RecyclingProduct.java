@@ -28,8 +28,19 @@ public class RecyclingProduct {
     private String name;
 
     @Column(nullable = false)
-    private String info;
+    private String recyclingInfo;
 
     @Column(nullable = false)
     private String tip;
+
+    public RecyclingProduct(final String name, final String recyclingInfo, final String tip) {
+        this(null, name, recyclingInfo, tip);
+    }
+
+    public RecyclingProduct(final Long id, final String name, final String recyclingInfo, final String tip) {
+        this.id = id;
+        this.name = name;
+        this.recyclingInfo = recyclingInfo;
+        this.tip = tip;
+    }
 }
