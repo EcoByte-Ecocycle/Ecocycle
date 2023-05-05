@@ -32,7 +32,7 @@ public class AuthService {
         final User user = userRepository.findByEmail(profileResponse.getEmail())
                 .orElseGet(() -> saveGoogleUser(profileResponse));
 
-        return createLoginResponse(user.getId());
+        return createLoginResponse(user);
     }
 
     public boolean isAdmin(final Long loginId) {
@@ -46,8 +46,8 @@ public class AuthService {
         return userRepository.save(userToSave);
     }
 
-    private LoginResponse createLoginResponse(final Long userId) {
-        final String accessToken = jwtTokenProvider.create(String.valueOf(userId));
-        return new LoginResponse(accessToken);
+    private LoginResponse createLoginResponse(final User user) {
+        final String accessToken = jwtTokenProvider.create(String.valueOf(user.getId()));
+        return new LoginResponse(user.getRole(), accessToken);
     }
 }
