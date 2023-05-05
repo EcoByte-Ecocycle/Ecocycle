@@ -42,7 +42,7 @@ public class UserAcceptanceTest {
                 .willReturn(new GoogleProfileResponse("azpi@gmail.com", "azpi"));
         final String accessToken = RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().post("/login?code=anyCode")
+                .when().get("/login?code=anyCode")
                 .then().log().all()
                 .extract().jsonPath().get("accessToken");
 

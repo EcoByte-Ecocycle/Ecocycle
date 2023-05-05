@@ -39,11 +39,11 @@ public class LoginAcceptanceTest {
                 .willReturn("something");
         given(googleClient.getProfileResponse(anyString()))
                 .willReturn(new GoogleProfileResponse("azpi@gmail.com", "azpi"));
-        
+
         // when
         final ValidatableResponse response = RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().post("/login?code=anyCode")
+                .when().get("/login?code=anyCode")
                 .then().log().all();
 
         // then
