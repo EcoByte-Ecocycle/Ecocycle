@@ -1,5 +1,6 @@
 package com.ecobyte.ecocycle.acceptance;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -48,6 +49,7 @@ public class LoginAcceptanceTest {
 
         // then
         response.statusCode(OK.value())
-                .body("accessToken", notNullValue());
+                .body("accessToken", notNullValue())
+                .body("role", equalTo("user"));
     }
 }
