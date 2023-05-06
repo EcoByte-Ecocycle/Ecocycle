@@ -15,7 +15,7 @@ public class AdminAspect {
         this.authService = authService;
     }
 
-    @Before("@annotation(com.ecobyte.ecocycle.application.auth.AdminAuthorization) && args(loginId)")
+    @Before("@annotation(com.ecobyte.ecocycle.application.auth.AdminAuthorization) && args(loginId, ..)")
     public void authorizeAdmin(final Long loginId) {
         if (!authService.isAdmin(loginId)) {
             throw new AdminAuthorizationException();

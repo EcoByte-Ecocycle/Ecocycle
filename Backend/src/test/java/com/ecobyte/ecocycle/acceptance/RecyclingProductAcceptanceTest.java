@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.ecobyte.ecocycle.dto.request.RecyclingProductRequest;
@@ -39,7 +40,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
                 .body("tip", equalTo(recyclingProductRequest.getTip()));
     }
 
-    @DisplayName("관리자 제품 추가 기능이 성공하면 200 OK를 응답한다.")
+    @DisplayName("관리자 제품 추가 기능 입력값이 누락되면 400을 응답한다.")
     @Test
     void add_error_missingInputValue() {
         // given
@@ -57,5 +58,25 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
 
         // then
         errorResponse.statusCode(BAD_REQUEST.value());
+    }
+
+    @DisplayName("관리자 제품 추가 기능을 관리자가 아닌 사용자가 요청하면 403을 응답한다.")
+    @Test
+    void add_error_not_admin() {
+        // given
+        given(googleClient.getIdToken(anyString()))
+                .willReturn("something");
+        given(googleClient.getProfileResponse(anyString()))
+                .willReturn(new GoogleProfileResponse("azpi@email.com", "azpi"));
+
+        final String accessToken = getAccessToken();
+        final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest("바나나껍질",
+                "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
+
+        // when
+        final ValidatableResponse errorResponse = post("/products", recyclingProductRequest, accessToken);
+
+        // then
+        errorResponse.statusCode(FORBIDDEN.value());
     }
 }

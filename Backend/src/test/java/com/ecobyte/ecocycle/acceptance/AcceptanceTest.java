@@ -30,7 +30,7 @@ public class AcceptanceTest {
     protected String getAccessToken() {
         return RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().post("/login?code=anyCode")
+                .when().get("/login?code=anyCode")
                 .then().log().all()
                 .extract().jsonPath().get("accessToken");
     }
