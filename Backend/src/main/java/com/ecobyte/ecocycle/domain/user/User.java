@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
@@ -21,9 +20,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
-
-    private static final String REGEX_EMAIL = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
-    private static final Pattern PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,5 +52,9 @@ public class User {
         this.email = email;
         this.stamps = 0;
         this.role = role;
+    }
+
+    public boolean isAdmin() {
+        return this.role == Role.ADMIN;
     }
 }
