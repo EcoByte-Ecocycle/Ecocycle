@@ -30,7 +30,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
                 "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
 
         // when
-        final ValidatableResponse productResponse = post("/products", recyclingProductRequest, accessToken);
+        final ValidatableResponse productResponse = post("/api/products", recyclingProductRequest, accessToken);
 
         // then
         productResponse.statusCode(OK.value())
@@ -54,7 +54,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
                 "종량제에 버려주세요.", null);
 
         // when
-        final ValidatableResponse errorResponse = post("/products", recyclingProductRequest, accessToken);
+        final ValidatableResponse errorResponse = post("/api/products", recyclingProductRequest, accessToken);
 
         // then
         errorResponse.statusCode(BAD_REQUEST.value());
@@ -74,7 +74,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
                 "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
 
         // when
-        final ValidatableResponse errorResponse = post("/products", recyclingProductRequest, accessToken);
+        final ValidatableResponse errorResponse = post("/api/products", recyclingProductRequest, accessToken);
 
         // then
         errorResponse.statusCode(FORBIDDEN.value());
