@@ -24,6 +24,3 @@ out/
 
 ### MAC Template
 *.DS_Store
-
-### yml
-application-oauth.yml
