@@ -1,8 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import qs from 'qs';
 import axios from 'axios';
 
-//const AUTHORIZE_URI = "https://accounts.google.com/o/oauth2/v2/auth";
 
 const useGoogle = ({
     clientId
@@ -16,28 +16,21 @@ const useGoogle = ({
         scope: process.env.REACT_APP_SCOPE
     })
 
+    const movePage = useNavigate();
+    const goMain = () => {
+        movePage('/main');
+    }
+
     useEffect(() => {
         (async () => {
             if (window.location.search.split('?').length > 1) {
-                console.log(window.location.search.split('?')[1]) //왜 두번씩 찍히지?
+                console.log(window.location.search.split('?')[1]) 
                 const { code } = qs.parse(window.location.search.split('?')[1]) 
 
-                //console.log(code)
-                //console.log(scope)
-
-                //const { data } = await axios.get(`http://localhost:3000/login?code=${code}&redirect_uri=${redirect_uri}`);
-                //console.log(data)
-
-                axios.post(`http://localhost:8080/login/?code=${code}`, {
-
-                })
-                .then(function(response) {
-                    console.log(response);
-                })
-                // .catch(fuction(error) {
-                //     console.log(error);
-                // })
-            } else if (window.location.search.split('#').length) { }
+                const { data } = await axios.get(`http://localhost:8080/api/login?code=${code}`);
+                console.log(data);
+                goMain();
+            }
         }) ();
     }, [])
 

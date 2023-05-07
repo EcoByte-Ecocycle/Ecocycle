@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    /* min-height: 100vh; */
+    text-align: center;
+}
+
+.user_btn {
+    padding: 15px 20px;
+    font-size: 24px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+}
+
+.admin_btn {
+    width: 199px;
+    height: 63px;
+    font-size: 26px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #A9C2B3;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+
+    margin-bottom: 30px;
+}
+
+.line {
+    color: #B2C9BD;
+    border: 3px solid #B2C9BD;
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
+#logo_img {
+    margin-top: 118px;
+    margin-bottom: 70px;
+}
+
+#login_btn {
+    margin-top: 60px;
+    margin-bottom: 150px;
+}
+
+
+#copyright_img {
+    margin-bottom: 20px;
+}
+
+#copyright2_img {
+    margin-bottom: 20px;
+}
+
+#main_page {
+    background-color: #B2CABD;
+    height: 100vh;
+}
+
+#menu_btn {
+    width: 40px;
+    margin-bottom: 35px;
+    margin-right: 50px;
+}
+
+#camera_btn {
+    width: 70px;
+    padding-bottom: 24px;
+}
+
+#mypage_btn {
+    width: 50px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+
+#main_footer {
+    margin-top: 70px;
+}
+
+
+#user_tree {
+    width: 300px;
+}
+
+.admin_page {
+    background-color: #E6EFEA;
+}
+
+/* #admin_img {} */
+
+#admin_btns {
+    text-align: center;
+    margin-bottom: 30;
+}
+
+#checkReport_btn {
+    margin-top: 26px;
+}
+
+#manageQuiz_btn{
+    margin-bottom: 264px;
+}
+
+#logo2_img {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+#report_img {
+    margin-top: 30px;
+    width: 300px;
+}
+
+#photo_btn {
+    margin-top: 40px;
+}
