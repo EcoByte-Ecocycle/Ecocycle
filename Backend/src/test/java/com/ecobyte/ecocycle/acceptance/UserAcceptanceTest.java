@@ -26,7 +26,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
         final String accessToken = getAccessToken();
 
         // when
-        final ValidatableResponse userResponse = get("/users/me", accessToken);
+        final ValidatableResponse userResponse = get("/api/users/me", accessToken);
 
         // then
         userResponse.statusCode(OK.value())
@@ -45,7 +45,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
         final ValidatableResponse userResponse = RestAssured.given().log().all()
                 .auth().oauth2(accessToken)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().get("/users/me")
+                .when().get("/api/users/me")
                 .then().log().all();
 
         // then
