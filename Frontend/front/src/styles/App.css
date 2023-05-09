@@ -6,7 +6,6 @@
 }
 
 body {
-    /* min-height: 100vh; */
     text-align: center;
 }
 
@@ -43,7 +42,7 @@ body {
 }
 
 #logo_img {
-    margin-top: 118px;
+    margin-top: 130px;
     margin-bottom: 70px;
 }
 
@@ -58,12 +57,12 @@ body {
 }
 
 #copyright2_img {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 #main_page {
     background-color: #B2CABD;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 #menu_btn {
@@ -85,7 +84,7 @@ body {
 
 
 #main_footer {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 
@@ -95,6 +94,7 @@ body {
 
 .admin_page {
     background-color: #E6EFEA;
+    min-height: 100vh;
 }
 
 /* #admin_img {} */
@@ -123,6 +123,12 @@ body {
     width: 300px;
 }
 
-#photo_btn {
+#report_footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+
+#upload_btn {
     margin-top: 40px;
 }

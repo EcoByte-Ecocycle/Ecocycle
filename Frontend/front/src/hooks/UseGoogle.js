@@ -21,6 +21,10 @@ const useGoogle = ({
         movePage('/main');
     }
 
+    const goAdmin = () => {
+        movePage('/admin');
+    }
+
     useEffect(() => {
         (async () => {
             if (window.location.search.split('?').length > 1) {
@@ -28,8 +32,15 @@ const useGoogle = ({
                 const { code } = qs.parse(window.location.search.split('?')[1]) 
 
                 const { data } = await axios.get(`http://localhost:8080/api/login?code=${code}`);
-                console.log(data);
-                goMain();
+                
+                if (data.role === "user") {
+                    goMain();
+                }
+                else if (data.role === "admin") {
+                    goAdmin();
+                }
+
+                
             }
         }) ();
     }, [])
