@@ -19,7 +19,7 @@ const Main = () => {
                 <section>
                     <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo" /> <br />
                     <img id="user_tree" src="assets/userTree.png" alt="User Tree"></img>
-                    <footer>
+                    <footer id="main_footer">
                         <input type="image" id="menu_btn" src="assets/menuBtn.png" alt="Menu Button" onClick={showMenu} />
                         <input type="image" id="camera_btn" src="assets/camerBtn.png" alt="Camera Button" onClick={goReport} />
                         <input type="image" id="mypage_btn" src="assets/stampBtn.png" alt="Mypage Button" onClick={goMypage} />
