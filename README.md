@@ -3,7 +3,8 @@
 #  1. 프로젝트에 대한 정보 
 
 블로그 : https://velog.io/@thdalwh3867/series/Capstone-Design-Project
-사용자의 이미지를 분석하여 재활용 분리배출을 돕는 프로그램.
+</br>
+
 재활용품의 사진을 첨부하면 어떤 재활용이며, 어떻게 재활용 하면 되는 지 안내해주는프로그램 “EcoCycle”
 
 ![image](https://user-images.githubusercontent.com/88193038/231222755-7554616b-16c6-4eec-823e-833955d261fc.png)
