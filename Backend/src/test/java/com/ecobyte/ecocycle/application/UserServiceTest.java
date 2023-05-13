@@ -26,13 +26,13 @@ class UserServiceTest {
         // given
         final User user = new User("azpi", "azpi", "azpi@gmail.com", Role.USER);
         final User savedUser = userRepository.save(user);
-        final MainPageResponse expectedMainPageResponse1 = new MainPageResponse("azpi", 0, false);
+        final MainPageResponse expectedMainPageResponse = new MainPageResponse("azpi", 0, false);
 
         // when
         final MainPageResponse mainPageResponse = userService.findMyMainPage(savedUser.getId());
 
         // then
         assertThat(mainPageResponse).usingRecursiveComparison()
-                .isEqualTo(expectedMainPageResponse1);
+                .isEqualTo(expectedMainPageResponse);
     }
 }
