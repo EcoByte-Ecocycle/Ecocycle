@@ -1,12 +1,9 @@
 package com.ecobyte.ecocycle.acceptance;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
-import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.DisplayName;
@@ -19,11 +16,7 @@ public class UserAcceptanceTest extends AcceptanceTest {
     @Test
     void findMyInfo() {
         // given
-        given(googleClient.getIdToken(anyString()))
-                .willReturn("something");
-        given(googleClient.getProfileResponse(anyString()))
-                .willReturn(new GoogleProfileResponse("azpi@gmail.com", "azpi"));
-        final String accessToken = getAccessToken();
+        final String accessToken = loginUser();
 
         // when
         final ValidatableResponse userResponse = get("/api/users/me", accessToken);
