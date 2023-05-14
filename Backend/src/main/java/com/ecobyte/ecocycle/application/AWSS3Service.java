@@ -17,11 +17,11 @@ public class AWSS3Service {
 
     private final AmazonS3 s3Client;
 
-    @Value("${aws.s3.bucket}")
+    @Value("${cloud.aws.s3.bucket}")
     private String bucketName;
 
-    public AWSS3Service(final AmazonS3 s3Client) {
-        this.s3Client = s3Client;
+    public AWSS3Service(final AmazonS3 amazonS3) {
+        this.s3Client = amazonS3;
     }
 
     public PresignedUrlResponse getImagePresignedUrl() {
