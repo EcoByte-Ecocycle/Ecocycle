@@ -1,0 +1,3 @@
+[submodule "Backend/src/main/resources/config"]
+	path = Backend/src/main/resources/config
+	url = https://github.com/shindong96/ecocyle-be-config.git

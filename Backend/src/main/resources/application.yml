@@ -10,11 +10,11 @@ spring:
           events:
             log:
               LOG_QUERIES_SLOWER_THAN_MS: 1000
-    hibernate:
-      ddl-auto: create # ddl-auto
-
   profiles:
-    include: oauth
-    
-cors-config:
-  allowed-origin: 'http://localhost:3000'
+    active: local
+
+logging:
+  level:
+    org.hibernate:
+      SQL: debug
+      type: trace
