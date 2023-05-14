@@ -22,5 +22,8 @@ bin/
 *.ipr
 out/
 
+# log
+logs/
+
 ### MAC Template
 *.DS_Store
