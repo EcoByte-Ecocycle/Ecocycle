@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import qs from 'qs';
 import axios from 'axios';
-
 
 const useGoogle = ({
     clientId
@@ -17,12 +16,13 @@ const useGoogle = ({
     })
 
     const movePage = useNavigate();
-    const goMain = () => {
-        movePage('/main');
-    }
 
     const goAdmin = () => {
         movePage('/admin');
+    }
+
+    const goMain = () => {
+        movePage('/main');
     }
 
     useEffect(() => {
@@ -33,17 +33,20 @@ const useGoogle = ({
 
                 const { data } = await axios.get(`http://localhost:8080/api/login?code=${code}`);
                 
+                localStorage.clear();
+                localStorage.setItem('token', data.accessToken);  
+
+
                 if (data.role === "user") {
                     goMain();
                 }
                 else if (data.role === "admin") {
                     goAdmin();
                 }
-
-                
             }
         }) ();
     }, [])
+
 
     return {
         loginUrl: process.env.REACT_APP_AUTHORIZE_URI + "?" + loginQueryString
