@@ -2,14 +2,11 @@ package com.ecobyte.ecocycle.acceptance;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.ecobyte.ecocycle.dto.request.RecyclingProductRequest;
-import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +17,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
     @Test
     void add() {
         // given
-        given(googleClient.getIdToken(anyString()))
-                .willReturn("something");
-        given(googleClient.getProfileResponse(anyString()))
-                .willReturn(new GoogleProfileResponse(adminEmail, "admin"));
-
-        final String accessToken = getAccessToken();
+        final String accessToken = loginAdmin();
         final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest("바나나껍질",
                 "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
 
@@ -44,12 +36,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
     @Test
     void add_error_missingInputValue() {
         // given
-        given(googleClient.getIdToken(anyString()))
-                .willReturn("something");
-        given(googleClient.getProfileResponse(anyString()))
-                .willReturn(new GoogleProfileResponse(adminEmail, "admin"));
-
-        final String accessToken = getAccessToken();
+        final String accessToken = loginAdmin();
         final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest("바나나껍질",
                 "종량제에 버려주세요.", null);
 
@@ -64,12 +51,7 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
     @Test
     void add_error_not_admin() {
         // given
-        given(googleClient.getIdToken(anyString()))
-                .willReturn("something");
-        given(googleClient.getProfileResponse(anyString()))
-                .willReturn(new GoogleProfileResponse("azpi@email.com", "azpi"));
-
-        final String accessToken = getAccessToken();
+        final String accessToken = loginUser();
         final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest("바나나껍질",
                 "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
 

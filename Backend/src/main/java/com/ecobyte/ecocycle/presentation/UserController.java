@@ -2,8 +2,8 @@ package com.ecobyte.ecocycle.presentation;
 
 import com.ecobyte.ecocycle.application.UserService;
 import com.ecobyte.ecocycle.dto.response.MainPageResponse;
-import com.ecobyte.ecocycle.presentation.auth.Authorization;
 import com.ecobyte.ecocycle.presentation.auth.AuthorizationPrincipal;
+import com.ecobyte.ecocycle.presentation.auth.LoginAuthorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
-@Authorization
+@LoginAuthorization
 public class UserController {
 
     private final UserService userService;
