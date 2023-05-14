@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AWSS3Service {
 
+    private static final String UPLOAD_FOLDER_PATH = "upload/report-image";
+    
     private final AmazonS3 s3Client;
 
     @Value("${cloud.aws.s3.bucket}")
@@ -36,7 +38,8 @@ public class AWSS3Service {
         expTimeMillis += 1000 * 60 * 60; // 1시간
         expiration.setTime(expTimeMillis);
 
-        GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, fileName)
+        GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName,
+                UPLOAD_FOLDER_PATH + fileName)
                 .withMethod(HttpMethod.PUT)
                 .withExpiration(expiration);
 
