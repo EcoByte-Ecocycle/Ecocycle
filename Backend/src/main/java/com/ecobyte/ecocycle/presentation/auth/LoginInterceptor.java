@@ -35,8 +35,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     private boolean isAnnotated(final Object handler) {
         final HandlerMethod handlerMethod = (HandlerMethod) handler;
-        final Authorization classAnnotation = handlerMethod.getBeanType().getAnnotation(Authorization.class);
-        final Authorization methodAnnotation = handlerMethod.getMethodAnnotation(Authorization.class);
+        final LoginAuthorization classAnnotation = handlerMethod.getBeanType().getAnnotation(LoginAuthorization.class);
+        final LoginAuthorization methodAnnotation = handlerMethod.getMethodAnnotation(LoginAuthorization.class);
         return Objects.nonNull(classAnnotation) || Objects.nonNull(methodAnnotation);
     }
 

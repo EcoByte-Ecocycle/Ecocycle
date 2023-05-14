@@ -3,8 +3,8 @@ package com.ecobyte.ecocycle.presentation;
 import com.ecobyte.ecocycle.application.ReportService;
 import com.ecobyte.ecocycle.dto.request.ReportRequest;
 import com.ecobyte.ecocycle.dto.response.ReportResponse;
-import com.ecobyte.ecocycle.presentation.auth.Authorization;
 import com.ecobyte.ecocycle.presentation.auth.AuthorizationPrincipal;
+import com.ecobyte.ecocycle.presentation.auth.LoginAuthorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/reports")
-@Authorization
+@LoginAuthorization
 public class ReportController {
 
     private final ReportService reportService;

@@ -4,8 +4,8 @@ import com.ecobyte.ecocycle.application.RecyclingProductService;
 import com.ecobyte.ecocycle.application.auth.AdminAuthorization;
 import com.ecobyte.ecocycle.dto.request.RecyclingProductRequest;
 import com.ecobyte.ecocycle.dto.response.RecyclingProductResponse;
-import com.ecobyte.ecocycle.presentation.auth.Authorization;
 import com.ecobyte.ecocycle.presentation.auth.AuthorizationPrincipal;
+import com.ecobyte.ecocycle.presentation.auth.LoginAuthorization;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/products")
-@Authorization
+@LoginAuthorization
 public class RecyclingProductController {
 
     private final RecyclingProductService recyclingProductService;
