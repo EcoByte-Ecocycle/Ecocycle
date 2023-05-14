@@ -1,5 +1,9 @@
 package com.ecobyte.ecocycle.acceptance;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
+
+import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import com.ecobyte.ecocycle.support.GoogleClient;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
@@ -25,6 +29,24 @@ public class AcceptanceTest {
     @BeforeEach
     public void setUp() {
         RestAssured.port = port;
+    }
+
+    protected String loginUser() {
+        given(googleClient.getIdToken(anyString()))
+                .willReturn("something");
+        given(googleClient.getProfileResponse(anyString()))
+                .willReturn(new GoogleProfileResponse("azpi@gmail.com", "azpi"));
+
+        return getAccessToken();
+    }
+
+    protected String loginAdmin() {
+        given(googleClient.getIdToken(anyString()))
+                .willReturn("something");
+        given(googleClient.getProfileResponse(anyString()))
+                .willReturn(new GoogleProfileResponse(adminEmail, "admin"));
+
+        return getAccessToken();
     }
 
     protected String getAccessToken() {
