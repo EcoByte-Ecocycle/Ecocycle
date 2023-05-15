@@ -1,11 +1,11 @@
-import { getPresignedUrl, uploadImage } from "../api/api.js"
+import {getPresignedUrl, uploadImage} from "../api/api.js"
 
 const imageHandler = (imageData) => {
-    
-    const {preSignedUrl, fileName } = getPresignedUrl();
+
+    const {preSignedUrl, fileName} = getPresignedUrl();
 
     const imageFile = imageData.toFile(fileName);
-    const imageUrl = `https://s3.amazonaws.com/ecocycle-image-upload-bucket/${fileName}`;
+    const imageUrl = `https://s3.ap-northeast-2.amazonaws.com/ecocycle-image-upload-bucket/${fileName}`;
 
     uploadImage(preSignedUrl, imageFile);
 

@@ -1,8 +1,8 @@
 import '../styles/App.css';
 import '../styles/reset.css';
-import { useNavigate } from 'react-router-dom';
-import React, { useRef, useState } from "react";
-import imageHandler from '../hooks/imageHandler.js';  //???
+import {useNavigate} from 'react-router-dom';
+import React, {useRef, useState} from "react";
+import imageHandler from '../hooks/ImageHandler.js'; //???
 
 
 const Report = () => {
@@ -29,23 +29,24 @@ const Report = () => {
     return (
         <div>
             <main>
-                <hr className="line" />
+                <hr className="line"/>
                 <section>
-                    <img id="logo2_img" src="assets/logo2.png" alt="EcoCycle logo" /> <br />
+                    <img id="logo2_img" src="assets/logo2.png" alt="EcoCycle logo"/> <br/>
                     <span id="report_span">
-                        <img id="upload_img" src={imgFile ? imgFile : "assets/report.png"} alt="Upload" />
+                        <img id="upload_img" src={imgFile ? imgFile : "assets/report.png"} alt="Upload"/>
                     </span>
                     <form>
-                        <label className = "uploadImage_label" htmlFor="uploadImage_input"> 사진 첨부하기</label>
-                        <input type="file" id="uploadImage_input" accept="image/*" style={{ display: "none" }} ref={imgRef} onChange={saveImgFile} />
+                        <label className="uploadImage_label" htmlFor="uploadImage_input"> 사진 첨부하기</label>
+                        <input type="file" id="uploadImage_input" accept="image/*" style={{display: "none"}}
+                               ref={imgRef} onChange={saveImgFile}/>
                     </form>
 
                     {/* <button className="user_btn" id="upload_btn" onClick={OnClickImageUpload} > 사진 첨부하기 </button> */}
                 </section>
             </main>
             <footer id="report_footer">
-                <hr className="line" />
-                <img id="copyright2_img" src="assets/copyright2.png" alt="Copyright by EcoByte" />
+                <hr className="line"/>
+                <img id="copyright2_img" src="assets/copyright2.png" alt="Copyright by EcoByte"/>
             </footer>
         </div>
     );
