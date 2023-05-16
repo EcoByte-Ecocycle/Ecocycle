@@ -1,15 +1,12 @@
-import {getPresignedUrl, uploadImage} from "../api/api.js"
+import {getPresignedUrl, uploadImage} from '../api/api.js'
 
-const imageHandler = (imageData) => {
+const imageHandler = async (imageFile) => {
 
-    const {preSignedUrl, fileName} = getPresignedUrl();
+    const {presignedUrl} = await getPresignedUrl();
 
-    const imageFile = imageData.toFile(fileName);
-    const imageUrl = `https://s3.ap-northeast-2.amazonaws.com/ecocycle-image-upload-bucket/${fileName}`;
+    await uploadImage(presignedUrl, imageFile);
 
-    uploadImage(preSignedUrl, imageFile);
-
-    return {imageUrl};
+    return {presignedUrl};
 }
 
 export default imageHandler;

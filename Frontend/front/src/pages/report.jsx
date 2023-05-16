@@ -22,7 +22,7 @@ const Report = () => {
         reader.onloadend = () => {
             setImgFile(reader.result);
         };
-        imageHandler(imgFile);
+        imageHandler(file);
     };
 
 
