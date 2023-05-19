@@ -16,24 +16,5 @@ const axiosAuthApi = (url, options) => {
     return instance
 }
 
-const setUserInfo = async () => {
-    const accessToken = localStorage.getItem('token');
-
-    try {
-        const { data } = await axios.get("http://localhost:8080/api/users/me", 
-        {     
-            headers: { Authorization: `Bearer ${accessToken}` }
-        });
-        
-        localStorage.setItem('nickname' , data.nickname);
-        localStorage.setItem('stamps' , data.stamps);
-        localStorage.setItem('dailyQuiz' , data.dailyQuiz);
-    }
-    catch(err) {
-        console.log(`Error in setUserInfo: ${err}`);
-    }
-}
-
 export const defaultInstance = axiosApi(BASE_URL);
 export const authInstance = axiosAuthApi(BASE_URL);
-export default setUserInfo;

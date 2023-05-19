@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import setUserInfo from '../api/utils.js';
+import { getUserInfo } from '../api/apis.js'
 
 
 const makeMain = () => {
 
-    setUserInfo();
+    getUserInfo();
 
     const getStateOfTree = () => {
 
