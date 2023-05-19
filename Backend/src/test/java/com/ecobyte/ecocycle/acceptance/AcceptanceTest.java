@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
 import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
+import com.ecobyte.ecocycle.support.DataClassificationClient;
 import com.ecobyte.ecocycle.support.GoogleClient;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
@@ -17,14 +18,14 @@ import org.springframework.http.MediaType;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AcceptanceTest {
 
-    @LocalServerPort
-    int port;
-
     @MockBean
     protected GoogleClient googleClient;
-
+    @MockBean
+    protected DataClassificationClient dataClassificationClient;
     @Value("${admin.email}")
     protected String adminEmail;
+    @LocalServerPort
+    int port;
 
     @BeforeEach
     public void setUp() {
