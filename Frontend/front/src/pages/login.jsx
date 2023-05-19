@@ -5,6 +5,7 @@ import '../styles/reset.css';
 const CI = process.env.REACT_APP_CLIENT_ID;
 
 const Login = () => {
+
     const { loginUrl } = useGoogle({
         clientId: CI,
     })
@@ -15,7 +16,7 @@ const Login = () => {
             <main>
                 <section>
                     <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo" /> <br />
-                    <button className="user_btn" id="login_btn" onClick={()=>{window.location.href= loginUrl}}>Google로 로그인</button>
+                    <button className="user_btn" id="login_btn" onClick={() => { window.location.href = loginUrl }}>Google로 로그인</button>
                 </section>
                 <footer>
                     <hr className="line" />
