@@ -1,10 +1,13 @@
-import {getPresignedUrl, uploadImage} from '../api/api.js'
+import {getPresignedUrl, uploadImage} from '../api/apis.js'
 
 const imageHandler = async (imageFile) => {
 
     const {presignedUrl} = await getPresignedUrl();
 
-    await uploadImage(presignedUrl, imageFile);
+    const tmp = presignedUrl.split("?");
+    console.log(tmp[0]);
+
+    await uploadImage(tmp[0], imageFile);
 
     return {presignedUrl};
 }

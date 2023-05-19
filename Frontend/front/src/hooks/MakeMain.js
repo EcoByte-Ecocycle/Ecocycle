@@ -1,4 +1,4 @@
-import { getUserInfo } from '../api/api.js'
+import { getUserInfo } from '../api/apis.js'
 
 
 const makeMain = () => {

@@ -2,7 +2,8 @@ import '../styles/App.css';
 import '../styles/reset.css';
 import {useNavigate} from 'react-router-dom';
 import React, {useRef, useState} from "react";
-import imageHandler from '../hooks/ImageHandler.js'; //???
+import imageHandler from '../hooks/ImageHandler';  
+import { getProductInfo } from '../api/apis';
 
 
 const Report = () => {
@@ -22,7 +23,10 @@ const Report = () => {
         reader.onloadend = () => {
             setImgFile(reader.result);
         };
-        imageHandler(file);
+
+        const presignedUrl = imageHandler(file);
+        const info = getProductInfo(presignedUrl);
+        console.log(info);
     };
 
 
@@ -40,8 +44,6 @@ const Report = () => {
                         <input type="file" id="uploadImage_input" accept="image/*" style={{display: "none"}}
                                ref={imgRef} onChange={saveImgFile}/>
                     </form>
-
-                    {/* <button className="user_btn" id="upload_btn" onClick={OnClickImageUpload} > 사진 첨부하기 </button> */}
                 </section>
             </main>
             <footer id="report_footer">
