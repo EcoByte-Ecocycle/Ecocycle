@@ -2,8 +2,8 @@ import '../styles/App.css';
 import '../styles/reset.css';
 import {useNavigate} from 'react-router-dom';
 import React, {useRef, useState} from "react";
-import imageHandler from '../hooks/ImageHandler';  
-import { getProductInfo } from '../api/apis';
+import imageHandler from '../hooks/ImageHandler';
+import {getProductInfo} from '../api/apis';
 
 
 const Report = () => {
@@ -16,7 +16,7 @@ const Report = () => {
     const [imgFile, setImgFile] = useState("");
     const imgRef = useRef();
 
-    const saveImgFile = () => {
+    const saveImgFile = async () => {
         const file = imgRef.current.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -24,8 +24,8 @@ const Report = () => {
             setImgFile(reader.result);
         };
 
-        const presignedUrl = imageHandler(file);
-        const info = getProductInfo(presignedUrl);
+        const presignedUrl = await imageHandler(file);
+        const info = await getProductInfo(presignedUrl);
         console.log(info);
     };
 

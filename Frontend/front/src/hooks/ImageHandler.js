@@ -4,12 +4,11 @@ const imageHandler = async (imageFile) => {
 
     const {presignedUrl} = await getPresignedUrl();
 
+    await uploadImage(presignedUrl, imageFile);
+
     const tmp = presignedUrl.split("?");
     console.log(tmp[0]);
-
-    await uploadImage(tmp[0], imageFile);
-
-    return {presignedUrl};
+    return tmp[0];
 }
 
 export default imageHandler;
