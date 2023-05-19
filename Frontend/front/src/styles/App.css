@@ -9,7 +9,22 @@ body {
     text-align: center;
 }
 
+section {
+    text-align: center;
+}    
+
 .user_btn {
+    padding: 15px 20px;
+    font-size: 24px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+}
+
+.uploadImage_label {
     padding: 15px 20px;
     font-size: 24px;
     font-family: 'NanumSquareRoundOTF';
@@ -41,9 +56,30 @@ body {
     margin-bottom: 30px;
 }
 
+input {
+    width: 200px;
+    height: 50px;
+    /* font-size: 15px; */
+    font-family: 'NanumSquareRoundOTF';
+    border: none;
+    border-radius: 15px;
+    padding-left: 10px;
+    background-color: #F5F5F5;
+}
+
+#box {
+    margin: 30px 10px
+}
+
+#text {
+    font-family: 'NanumSquareRoundOTF';
+    color: #597164;
+    font-weight: bolder;
+}
+
 #logo_img {
     margin-top: 130px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 }
 
 #login_btn {
@@ -97,19 +133,17 @@ body {
     min-height: 100vh;
 }
 
-/* #admin_img {} */
+#admin_img {
+    margin-bottom: 26;
+}
 
 #admin_btns {
     text-align: center;
-    margin-bottom: 30;
+    margin-bottom: 26;
 }
 
 #checkReport_btn {
     margin-top: 26px;
-}
-
-#manageQuiz_btn{
-    margin-bottom: 264px;
 }
 
 #logo2_img {
@@ -131,4 +165,10 @@ body {
 
 #upload_btn {
     margin-top: 40px;
+}
+
+#upload_img {
+    margin-top: 30px;
+    width: 300px;
+    margin-bottom: 60px;
 }
