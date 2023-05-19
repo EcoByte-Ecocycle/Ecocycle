@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/products")
+@LoginAuthorization
 public class RecyclingProductController {
 
     private final RecyclingProductService recyclingProductService;
@@ -26,7 +27,6 @@ public class RecyclingProductController {
     }
 
     @PostMapping
-    @LoginAuthorization
     @AdminAuthorization
     public ResponseEntity<RecyclingProductResponse> add(@AuthorizationPrincipal final Long loginId,
                                                         @RequestBody @Valid final RecyclingProductRequest request) {
@@ -34,7 +34,6 @@ public class RecyclingProductController {
     }
 
     @GetMapping
-    @LoginAuthorization
     public ResponseEntity<RecyclingProductResponse> classify(@RequestParam("url") final String imageUrl) {
         return ResponseEntity.ok(recyclingProductService.classify(imageUrl));
     }

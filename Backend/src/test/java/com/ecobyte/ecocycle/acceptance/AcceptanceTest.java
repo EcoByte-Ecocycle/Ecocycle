@@ -5,10 +5,12 @@ import static org.mockito.BDDMockito.given;
 
 import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import com.ecobyte.ecocycle.support.DataClassificationClient;
+import com.ecobyte.ecocycle.support.DatabaseCleanUp;
 import com.ecobyte.ecocycle.support.GoogleClient;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,10 +28,13 @@ public class AcceptanceTest {
     protected String adminEmail;
     @LocalServerPort
     int port;
+    @Autowired
+    private DatabaseCleanUp databaseCleanUp;
 
     @BeforeEach
     public void setUp() {
         RestAssured.port = port;
+        databaseCleanUp.execute();
     }
 
     protected String loginUser() {
