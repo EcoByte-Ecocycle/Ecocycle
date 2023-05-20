@@ -5,9 +5,11 @@ import com.ecobyte.ecocycle.domain.report.ReportRepository;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.request.ReportRequest;
-import com.ecobyte.ecocycle.dto.response.ReportResponse;
+import com.ecobyte.ecocycle.dto.response.ReportsResponse;
+import com.ecobyte.ecocycle.dto.response.SavedReportResponse;
 import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +26,18 @@ public class ReportService {
     }
 
     @Transactional
-    public ReportResponse add(final Long loginId, final ReportRequest request) {
+    public SavedReportResponse add(final Long loginId, final ReportRequest request) {
         final User loginUser = userRepository.findById(loginId)
                 .orElseThrow(UserNotFoundException::new);
         final Report report = new Report(request.getProductName(), request.getImageUrl(), loginUser,
                 LocalDateTime.now());
         final Report savedReport = reportRepository.save(report);
-        return new ReportResponse(savedReport.getId());
+        return new SavedReportResponse(savedReport.getId());
     }
+
+    public ReportsResponse findALl() {
+        final List<Report> reports = reportRepository.findAll();
+        return ReportsResponse.from(reports);
+    }
+
 }
