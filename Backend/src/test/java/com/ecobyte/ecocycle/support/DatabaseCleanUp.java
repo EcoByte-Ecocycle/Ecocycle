@@ -39,9 +39,6 @@ public class DatabaseCleanUp {
         entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
 
         for (TableTuple tuple : tableTuples) {
-            if (tuple.name.equals("users")) {
-                continue;
-            }
             entityManager
                     .createNativeQuery("TRUNCATE TABLE " + tuple.name).executeUpdate();
             entityManager
