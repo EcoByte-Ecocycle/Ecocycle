@@ -3,6 +3,9 @@ package com.ecobyte.ecocycle.acceptance;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
+import com.ecobyte.ecocycle.domain.user.Role;
+import com.ecobyte.ecocycle.domain.user.User;
+import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.response.GoogleProfileResponse;
 import com.ecobyte.ecocycle.support.DataClassificationClient;
 import com.ecobyte.ecocycle.support.DatabaseCleanUp;
@@ -20,14 +23,21 @@ import org.springframework.http.MediaType;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AcceptanceTest {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @MockBean
     protected GoogleClient googleClient;
+
     @MockBean
     protected DataClassificationClient dataClassificationClient;
+
     @Value("${admin.email}")
     protected String adminEmail;
+
     @LocalServerPort
     int port;
+
     @Autowired
     private DatabaseCleanUp databaseCleanUp;
 
@@ -35,6 +45,7 @@ public class AcceptanceTest {
     public void setUp() {
         RestAssured.port = port;
         databaseCleanUp.execute();
+        userRepository.save(new User("admin", "admin", adminEmail, Role.ADMIN));
     }
 
     protected String loginUser() {
