@@ -31,7 +31,7 @@ const useGoogle = ({
                 console.log(window.location.search.split('?')[1]) 
                 const { code } = qs.parse(window.location.search.split('?')[1]) 
 
-                const { data } = await axios.get(`http://localhost:8080/api/login?code=${code}`);
+                const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/login?code=${code}`);
                 
                 localStorage.clear();
                 localStorage.setItem('token', data.accessToken);  
