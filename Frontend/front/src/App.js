@@ -1,23 +1,27 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Main from './pages/main';
 import Admin from './pages/admin';
 import Report from './pages/report';
+import AddProduct from './pages/addProduct';
+import { Navigate } from "react-router-dom";
 
+const isLogin = false;
 
 function App() {
     return (
-        <div className = "App">
+        <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/login"} element = {<Login/>}></Route>
-                    <Route path={"/main"} element = {<Main/>}></Route>
-                    <Route path={"/admin"} element = {<Admin/>}></Route>
-                    <Route path={"/report"} element = {<Report/>}></Route>
-
+                    <Route path={"/"} element={isLogin ? <Navigate to="/main" /> : <Navigate to="/login" />} ></Route>
+                    <Route path={"/login"} element={<Login />}></Route>
+                    <Route path={"/main"} element={<Main />}></Route>
+                    <Route path={"/admin"} element={<Admin />}></Route>
+                    <Route path={"/report"} element={<Report />}></Route>
+                    <Route path={"/addProduct"} element={<AddProduct />}></Route>
                 </Routes>
-            </BrowserRouter>
-        </div>
+            </BrowserRouter >
+        </div >
     );
 }
 
