@@ -1,8 +1,10 @@
 package com.ecobyte.ecocycle.presentation;
 
 import com.ecobyte.ecocycle.application.QuizService;
+import com.ecobyte.ecocycle.application.auth.AdminAuthorization;
 import com.ecobyte.ecocycle.dto.request.QuizRequest;
 import com.ecobyte.ecocycle.dto.response.QuizResponse;
+import com.ecobyte.ecocycle.presentation.auth.AuthorizationPrincipal;
 import com.ecobyte.ecocycle.presentation.auth.LoginAuthorization;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,16 @@ public class QuizController {
     }
 
     @PostMapping
-    public ResponseEntity<QuizResponse> add(@RequestBody final QuizRequest quizRequest) {
+    @AdminAuthorization
+    public ResponseEntity<QuizResponse> add(@AuthorizationPrincipal final Long loginId,
+                                            @RequestBody final QuizRequest quizRequest) {
         return ResponseEntity.ok(quizService.add(quizRequest));
     }
+
+    @PostMapping("/today")
+    public ResponseEntity<QuizResponse> giveDailyQuiz(@AuthorizationPrincipal final Long loginId) {
+        final QuizResponse quizResponse = quizService.giveDailyQuiz(loginId);
+        return ResponseEntity.ok(quizResponse);
+    }
+
 }

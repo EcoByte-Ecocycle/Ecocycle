@@ -1,8 +1,10 @@
 package com.ecobyte.ecocycle.presentation;
 
 import com.ecobyte.ecocycle.dto.response.ErrorResponse;
+import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
 import com.ecobyte.ecocycle.exception.InvalidImageUrlException;
 import com.ecobyte.ecocycle.exception.NoDataException;
+import com.ecobyte.ecocycle.exception.NoQuizException;
 import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import com.ecobyte.ecocycle.exception.auth.AdminAuthorizationException;
 import com.ecobyte.ecocycle.exception.auth.TokenException;
@@ -41,8 +43,20 @@ public class ControllerAdvice {
                 .body(new ErrorResponse(exception.getMessage()));
     }
 
+    @ExceptionHandler(AlreadyExistedDailyQuizException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyExistedDailyQuizException(
+            final AlreadyExistedDailyQuizException exception) {
+        return ResponseEntity.status(exception.getHttpStatus())
+                .body(new ErrorResponse(exception.getMessage()));
+    }
+
     @ExceptionHandler(NoDataException.class)
     public ResponseEntity<ErrorResponse> handleNoDataException(final NoDataException exception) {
+        return ResponseEntity.status(exception.getHttpStatus()).build();
+    }
+
+    @ExceptionHandler(NoQuizException.class)
+    public ResponseEntity<ErrorResponse> handleNoQuizException(final NoQuizException exception) {
         return ResponseEntity.status(exception.getHttpStatus()).build();
     }
 
