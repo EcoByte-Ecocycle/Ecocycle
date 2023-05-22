@@ -11,16 +11,16 @@ const Main = () => {
     let photoPath;
 
     if (stateOfTree === 'seed') {
-        photoPath = 'assets/userSeed.png';
+        photoPath = 'assets/userSeed.PNG';
     }
     else if (stateOfTree === 'sprout') {
-        photoPath = 'assets/userSprout.png';
+        photoPath = 'assets/userSprout.PNG';
     }
     else if (stateOfTree === 'seedling') {
-        photoPath = 'assets/userSeedling.png';
+        photoPath = 'assets/userSeedling.PNG';
     }
     else if (stateOfTree === 'tree') {
-        photoPath = 'assets/userTree.png'
+        photoPath = 'assets/userTree.png';
     }
 
 
@@ -36,7 +36,7 @@ const Main = () => {
         <div>
             <main id="main_page">
                 <section>
-                    <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo" /> <br />
+                    <img id="logo_img" src="assets/logo.png`" alt="EcoCycle logo" /> <br />
                     <img id="user_tree" src={`${photoPath}`} alt="User Tree" />
                     <footer id="main_footer">
                         <input type="image" id="menu_btn" src="assets/menuBtn.png" alt="Menu Button" onClick={showMenu} />
