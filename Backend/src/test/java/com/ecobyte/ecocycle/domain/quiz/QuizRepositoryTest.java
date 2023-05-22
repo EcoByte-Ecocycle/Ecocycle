@@ -28,7 +28,7 @@ class QuizRepositoryTest {
 
         // then
         assertThat(quiz.getId()).isLessThanOrEqualTo(savedQuiz2.getId())
-                .isGreaterThan(0);
+                .isPositive();
     }
 
     @DisplayName("퀴즈가 없는 경우에 예외가 발생하지 않는능 검사한다.")
