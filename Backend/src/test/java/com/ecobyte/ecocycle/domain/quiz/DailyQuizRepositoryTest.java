@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-class QuizRecordRepositoryTest {
+class DailyQuizRepositoryTest {
 
     @Autowired
-    private QuizRecordRepository quizRecordRepository;
+    private DailyQuizRepository dailyQuizRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -30,10 +30,10 @@ class QuizRecordRepositoryTest {
         final LocalDate currentDate = LocalDate.now();
         final User user = userRepository.save(new User("azpi", "azpi", "azpi@email.com", Role.USER));
         final Quiz quiz = quizRepository.save(new Quiz("안경테는 플라스틱일까요?", false, "일반쓰레기입니다!"));
-        quizRecordRepository.save(new QuizRecord(user, quiz, currentDate));
+        dailyQuizRepository.save(new DailyQuiz(user, quiz, currentDate));
 
         // when
-        final boolean alreadyDid = quizRecordRepository
+        final boolean alreadyDid = dailyQuizRepository
                 .existsByUserIdAndAttendanceDate(user.getId(), currentDate);
 
         // then
@@ -48,7 +48,7 @@ class QuizRecordRepositoryTest {
         final User user = userRepository.save(new User("azpi", "azpi", "azpi@email.com", Role.USER));
 
         // when
-        final boolean alreadyDid = quizRecordRepository
+        final boolean alreadyDid = dailyQuizRepository
                 .existsByUserIdAndAttendanceDate(user.getId(), currentDate);
 
         // then

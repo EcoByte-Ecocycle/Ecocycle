@@ -3,9 +3,9 @@ package com.ecobyte.ecocycle.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.ecobyte.ecocycle.domain.quiz.DailyQuiz;
+import com.ecobyte.ecocycle.domain.quiz.DailyQuizRepository;
 import com.ecobyte.ecocycle.domain.quiz.Quiz;
-import com.ecobyte.ecocycle.domain.quiz.QuizRecord;
-import com.ecobyte.ecocycle.domain.quiz.QuizRecordRepository;
 import com.ecobyte.ecocycle.domain.quiz.QuizRepository;
 import com.ecobyte.ecocycle.domain.user.Role;
 import com.ecobyte.ecocycle.domain.user.User;
@@ -33,7 +33,7 @@ class QuizServiceTest {
     private QuizRepository quizRepository;
 
     @Autowired
-    private QuizRecordRepository quizRecordRepository;
+    private DailyQuizRepository dailyQuizRepository;
 
     @Autowired
     private DatabaseCleanUp databaseCleanUp;
@@ -68,7 +68,7 @@ class QuizServiceTest {
         final LocalDate currentDate = LocalDate.now();
         final User user = userRepository.save(new User("azpi", "azpi", "azpi@email.com", Role.USER));
         final Quiz quiz = quizRepository.save(new Quiz("안경테는 플라스틱일까요?", false, "일반쓰레기입니다!"));
-        quizRecordRepository.save(new QuizRecord(user, quiz, currentDate));
+        dailyQuizRepository.save(new DailyQuiz(user, quiz, currentDate));
 
         // when & then
         assertThatThrownBy(() -> quizService.giveDailyQuiz(user.getId()))

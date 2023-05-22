@@ -1,8 +1,8 @@
 package com.ecobyte.ecocycle.application;
 
+import com.ecobyte.ecocycle.domain.quiz.DailyQuiz;
+import com.ecobyte.ecocycle.domain.quiz.DailyQuizRepository;
 import com.ecobyte.ecocycle.domain.quiz.Quiz;
-import com.ecobyte.ecocycle.domain.quiz.QuizRecord;
-import com.ecobyte.ecocycle.domain.quiz.QuizRecordRepository;
 import com.ecobyte.ecocycle.domain.quiz.QuizRepository;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
@@ -21,14 +21,14 @@ public class QuizService {
 
     private final QuizRepository quizRepository;
     private final UserRepository userRepository;
-    private final QuizRecordRepository quizRecordRepository;
+    private final DailyQuizRepository dailyQuizRepository;
 
     public QuizService(final QuizRepository quizRepository,
                        final UserRepository userRepository,
-                       final QuizRecordRepository quizRecordRepository) {
+                       final DailyQuizRepository dailyQuizRepository) {
         this.quizRepository = quizRepository;
         this.userRepository = userRepository;
-        this.quizRecordRepository = quizRecordRepository;
+        this.dailyQuizRepository = dailyQuizRepository;
     }
 
     @Transactional
@@ -47,7 +47,7 @@ public class QuizService {
     }
 
     private void checkDailyQuizAlreadyDid(final Long loginId, final LocalDate currentDate) {
-        final boolean isAlreadyExistedDailyQuiz = quizRecordRepository
+        final boolean isAlreadyExistedDailyQuiz = dailyQuizRepository
                 .existsByUserIdAndAttendanceDate(loginId, currentDate);
 
         if (isAlreadyExistedDailyQuiz) {
@@ -55,12 +55,12 @@ public class QuizService {
         }
     }
 
-    private QuizRecord makeDailyQuiz(final Long userId, final LocalDate attendanceDate) {
+    private DailyQuiz makeDailyQuiz(final Long userId, final LocalDate attendanceDate) {
         final Quiz quiz = quizRepository.findByRandomOne()
                 .orElseThrow(NoQuizException::new);
         final User user = userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
-        final QuizRecord quizRecord = new QuizRecord(user, quiz, attendanceDate);
-        return quizRecordRepository.save(quizRecord);
+        final DailyQuiz dailyQuiz = new DailyQuiz(user, quiz, attendanceDate);
+        return dailyQuizRepository.save(dailyQuiz);
     }
 }

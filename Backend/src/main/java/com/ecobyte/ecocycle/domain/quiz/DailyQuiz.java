@@ -18,11 +18,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "quiz_record")
+@Table(name = "daily_quiz")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class QuizRecord {
+public class DailyQuiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class QuizRecord {
     @Column(nullable = false)
     private LocalDate attendanceDate;
 
-    public QuizRecord(final User user, final Quiz quiz, final LocalDate attendanceDate) {
+    public DailyQuiz(final User user, final Quiz quiz, final LocalDate attendanceDate) {
         this.user = user;
         this.quiz = quiz;
         this.isRight = false;
