@@ -49,9 +49,10 @@ public class QuizAcceptanceTest extends AcceptanceTest {
         // then
         response.statusCode(OK.value())
                 .body("id", notNullValue())
-                .body("content", notNullValue())
-                .body("answer", notNullValue())
-                .body("tip", notNullValue());
+                .body("quiz.id", notNullValue())
+                .body("quiz.content", notNullValue())
+                .body("quiz.answer", notNullValue())
+                .body("quiz.tip", notNullValue());
     }
 
     @DisplayName("데일리 퀴즈의 정답 여부를 업데이트하고 200 OK를 응답한다.")

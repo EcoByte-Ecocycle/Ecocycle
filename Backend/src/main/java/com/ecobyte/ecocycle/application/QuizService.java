@@ -8,6 +8,7 @@ import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.request.DailyQuizAnswerRequest;
 import com.ecobyte.ecocycle.dto.request.QuizRequest;
+import com.ecobyte.ecocycle.dto.response.DailyQuizResponse;
 import com.ecobyte.ecocycle.dto.response.QuizResponse;
 import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
 import com.ecobyte.ecocycle.exception.DailyQuizNotFoundException;
@@ -41,11 +42,12 @@ public class QuizService {
         return QuizResponse.from(savedQuiz);
     }
 
-    public QuizResponse giveDailyQuiz(final Long loginId) {
+    public DailyQuizResponse giveDailyQuiz(final Long loginId) {
         final LocalDate currentDate = LocalDate.now();
         checkDailyQuizAlreadyDid(loginId, currentDate);
 
-        return QuizResponse.from(makeDailyQuiz(loginId, currentDate).getQuiz());
+        final DailyQuiz dailyQuiz = makeDailyQuiz(loginId, currentDate);
+        return new DailyQuizResponse(dailyQuiz.getId(), QuizResponse.from(dailyQuiz.getQuiz()));
 
     }
 
