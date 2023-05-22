@@ -6,9 +6,12 @@ import com.ecobyte.ecocycle.domain.quiz.Quiz;
 import com.ecobyte.ecocycle.domain.quiz.QuizRepository;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
+import com.ecobyte.ecocycle.dto.request.DailyQuizAnswerRequest;
 import com.ecobyte.ecocycle.dto.request.QuizRequest;
 import com.ecobyte.ecocycle.dto.response.QuizResponse;
 import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
+import com.ecobyte.ecocycle.exception.DailyQuizNotFoundException;
+import com.ecobyte.ecocycle.exception.DailyQuizOwnedException;
 import com.ecobyte.ecocycle.exception.NoQuizException;
 import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import java.time.LocalDate;
@@ -44,6 +47,19 @@ public class QuizService {
 
         return QuizResponse.from(makeDailyQuiz(loginId, currentDate).getQuiz());
 
+    }
+
+    @Transactional
+    public void updateDailyAnswer(final Long loginId, final Long dailyQuizId,
+                                  final DailyQuizAnswerRequest dailyQuizAnswerRequest) {
+        final DailyQuiz dailyQuiz = dailyQuizRepository.findById(dailyQuizId)
+                .orElseThrow(DailyQuizNotFoundException::new);
+
+        if (!dailyQuiz.isOwnedBy(loginId)) {
+            throw new DailyQuizOwnedException();
+        }
+
+        dailyQuiz.updateAnswer(dailyQuizAnswerRequest.getIsRight());
     }
 
     private void checkDailyQuizAlreadyDid(final Long loginId, final LocalDate currentDate) {

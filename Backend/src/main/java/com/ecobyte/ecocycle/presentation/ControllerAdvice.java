@@ -2,6 +2,7 @@ package com.ecobyte.ecocycle.presentation;
 
 import com.ecobyte.ecocycle.dto.response.ErrorResponse;
 import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
+import com.ecobyte.ecocycle.exception.DailyQuizOwnedException;
 import com.ecobyte.ecocycle.exception.InvalidImageUrlException;
 import com.ecobyte.ecocycle.exception.NoDataException;
 import com.ecobyte.ecocycle.exception.NoQuizException;
@@ -46,6 +47,12 @@ public class ControllerAdvice {
     @ExceptionHandler(AlreadyExistedDailyQuizException.class)
     public ResponseEntity<ErrorResponse> handleAlreadyExistedDailyQuizException(
             final AlreadyExistedDailyQuizException exception) {
+        return ResponseEntity.status(exception.getHttpStatus())
+                .body(new ErrorResponse(exception.getMessage()));
+    }
+
+    @ExceptionHandler(DailyQuizOwnedException.class)
+    public ResponseEntity<ErrorResponse> handleDailyQuizOwnedException(final DailyQuizOwnedException exception) {
         return ResponseEntity.status(exception.getHttpStatus())
                 .body(new ErrorResponse(exception.getMessage()));
     }

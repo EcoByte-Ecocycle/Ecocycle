@@ -23,21 +23,16 @@ import org.springframework.http.MediaType;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AcceptanceTest {
 
-    @Autowired
-    private UserRepository userRepository;
-
     @MockBean
     protected GoogleClient googleClient;
-
     @MockBean
     protected DataClassificationClient dataClassificationClient;
-
     @Value("${admin.email}")
     protected String adminEmail;
-
     @LocalServerPort
     int port;
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private DatabaseCleanUp databaseCleanUp;
 
@@ -79,6 +74,14 @@ public class AcceptanceTest {
                 .auth().oauth2(token)
                 .body(requestBody)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .when().post(uri)
+                .then().log().all();
+    }
+
+    protected ValidatableResponse post(final String uri, final String token) {
+        return RestAssured.given().log().all()
+                .auth().oauth2(token)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .when().post(uri)
                 .then().log().all();
