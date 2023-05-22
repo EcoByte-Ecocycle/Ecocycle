@@ -4,7 +4,7 @@ const getUserInfo = async () => {
     const accessToken = localStorage.getItem('token');
 
     try {
-        const { data } = await axios.get("http://localhost:8080/api/users/me",
+        const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/users/me`,
             {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
@@ -21,7 +21,7 @@ const getPresignedUrl = async () => {
     const accessToken = localStorage.getItem('token');
 
     try {
-        const data = await fetch("http://localhost:8080/api/presigned-url", {
+        const data = await fetch(`${process.env.REACT_APP_SERVER_URL}/presigned-url`, {
             headers: { Authorization: `Bearer ${accessToken}` }
         });
         const jsonData = await data.json();
@@ -52,7 +52,7 @@ const getProductInfo = async (presignedUrl) => {
     const accessToken = localStorage.getItem('token');
 
     try {
-        const { data } = await axios.get("http://localhost:8080/api/products",
+        const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/products`,
             {
                 headers: { Authorization: `Bearer ${accessToken}` },
                 params: {url : presignedUrl},
@@ -71,7 +71,7 @@ const addProductInfo = async (productName, recyclingInfo, tip) => {
     console.log(productName, recyclingInfo, tip);
 
     try {
-        const { data } = await axios.post("http://localhost:8080/api/products",
+        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/products`,
             {
                 name: productName,
                 recyclingInfo: recyclingInfo,
@@ -83,7 +83,7 @@ const addProductInfo = async (productName, recyclingInfo, tip) => {
 
         console.log(data);
     } catch (err) {
-        console.log(`Error in getUserInfo: ${err}`);
+        console.log(`Error in addProductInfo: ${err}`);
     }
 }
 
