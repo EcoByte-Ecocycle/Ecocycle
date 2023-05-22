@@ -12,7 +12,7 @@ import com.ecobyte.ecocycle.domain.user.Role;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.request.DailyQuizAnswerRequest;
-import com.ecobyte.ecocycle.dto.response.QuizResponse;
+import com.ecobyte.ecocycle.dto.response.DailyQuizResponse;
 import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
 import com.ecobyte.ecocycle.exception.DailyQuizOwnedException;
 import com.ecobyte.ecocycle.support.DatabaseCleanUp;
@@ -55,10 +55,10 @@ class QuizServiceTest {
         final Quiz lastSavedQuiz = quizRepository.save(new Quiz("안경테는 플라스틱일까요?", false, "일반쓰레기입니다!"));
 
         // when
-        final QuizResponse quizResponse = quizService.giveDailyQuiz(user.getId());
+        final DailyQuizResponse dailyQuizResponse = quizService.giveDailyQuiz(user.getId());
 
         // then
-        assertThat(quizResponse.getId())
+        assertThat(dailyQuizResponse.getId())
                 .isNotNull()
                 .isLessThanOrEqualTo(lastSavedQuiz.getId())
                 .isPositive();

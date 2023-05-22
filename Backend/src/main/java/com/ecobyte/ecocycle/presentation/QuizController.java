@@ -4,6 +4,7 @@ import com.ecobyte.ecocycle.application.QuizService;
 import com.ecobyte.ecocycle.application.auth.AdminAuthorization;
 import com.ecobyte.ecocycle.dto.request.DailyQuizAnswerRequest;
 import com.ecobyte.ecocycle.dto.request.QuizRequest;
+import com.ecobyte.ecocycle.dto.response.DailyQuizResponse;
 import com.ecobyte.ecocycle.dto.response.QuizResponse;
 import com.ecobyte.ecocycle.presentation.auth.AuthorizationPrincipal;
 import com.ecobyte.ecocycle.presentation.auth.LoginAuthorization;
@@ -34,9 +35,9 @@ public class QuizController {
     }
 
     @PostMapping("/today")
-    public ResponseEntity<QuizResponse> giveDailyQuiz(@AuthorizationPrincipal final Long loginId) {
-        final QuizResponse quizResponse = quizService.giveDailyQuiz(loginId);
-        return ResponseEntity.ok(quizResponse);
+    public ResponseEntity<DailyQuizResponse> giveDailyQuiz(@AuthorizationPrincipal final Long loginId) {
+        final DailyQuizResponse dailyQuizResponse = quizService.giveDailyQuiz(loginId);
+        return ResponseEntity.ok(dailyQuizResponse);
     }
 
     @PutMapping("/today/{dailyQuizId}")
