@@ -1,6 +1,7 @@
 package com.ecobyte.ecocycle.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.ecobyte.ecocycle.domain.quiz.DailyQuiz;
@@ -10,8 +11,10 @@ import com.ecobyte.ecocycle.domain.quiz.QuizRepository;
 import com.ecobyte.ecocycle.domain.user.Role;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
+import com.ecobyte.ecocycle.dto.request.DailyQuizAnswerRequest;
 import com.ecobyte.ecocycle.dto.response.QuizResponse;
 import com.ecobyte.ecocycle.exception.AlreadyExistedDailyQuizException;
+import com.ecobyte.ecocycle.exception.DailyQuizOwnedException;
 import com.ecobyte.ecocycle.support.DatabaseCleanUp;
 import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,5 +76,36 @@ class QuizServiceTest {
         // when & then
         assertThatThrownBy(() -> quizService.giveDailyQuiz(user.getId()))
                 .isInstanceOf(AlreadyExistedDailyQuizException.class);
+    }
+
+    @DisplayName("데일리 퀴즈 정답 여부를 기록한다.")
+    @Test
+    void updateDailyAnswer() {
+        // given
+        final LocalDate currentDate = LocalDate.now();
+        final User user = userRepository.save(new User("azpi", "azpi", "azpi@email.com", Role.USER));
+        final Quiz quiz = quizRepository.save(new Quiz("안경테는 플라스틱일까요?", false, "일반쓰레기입니다!"));
+        final DailyQuiz dailyQuiz = dailyQuizRepository.save(new DailyQuiz(user, quiz, currentDate));
+        final DailyQuizAnswerRequest dailyQuizAnswerRequest = new DailyQuizAnswerRequest(true);
+
+        // when & then
+        assertThatCode(() -> quizService.updateDailyAnswer(user.getId(), dailyQuiz.getId(), dailyQuizAnswerRequest))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("데일리 퀴즈 정답 여부를 기록한다.")
+    @Test
+    void updateDailyAnswer_notOwnedUser() {
+        // given
+        final LocalDate currentDate = LocalDate.now();
+        final User user = userRepository.save(new User("azpi", "azpi", "azpi@email.com", Role.USER));
+        final Quiz quiz = quizRepository.save(new Quiz("안경테는 플라스틱일까요?", false, "일반쓰레기입니다!"));
+        final DailyQuiz dailyQuiz = dailyQuizRepository.save(new DailyQuiz(user, quiz, currentDate));
+        final DailyQuizAnswerRequest dailyQuizAnswerRequest = new DailyQuizAnswerRequest(true);
+
+        // when & then
+        assertThatThrownBy(
+                () -> quizService.updateDailyAnswer(user.getId() + 1, dailyQuiz.getId(), dailyQuizAnswerRequest))
+                .isInstanceOf(DailyQuizOwnedException.class);
     }
 }

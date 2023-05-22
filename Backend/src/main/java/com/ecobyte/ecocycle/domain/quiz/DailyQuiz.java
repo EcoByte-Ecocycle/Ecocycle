@@ -49,4 +49,12 @@ public class DailyQuiz {
         this.isRight = false;
         this.attendanceDate = attendanceDate;
     }
+
+    public boolean isOwnedBy(final Long userId) {
+        return user.isSameId(userId);
+    }
+
+    public void updateAnswer(final boolean isRight) {
+        this.isRight = isRight;
+    }
 }

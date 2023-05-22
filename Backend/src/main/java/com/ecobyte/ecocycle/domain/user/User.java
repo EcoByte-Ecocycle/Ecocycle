@@ -57,4 +57,8 @@ public class User {
     public boolean isAdmin() {
         return this.role == Role.ADMIN;
     }
+
+    public boolean isSameId(final Long userId) {
+        return id.equals(userId);
+    }
 }
