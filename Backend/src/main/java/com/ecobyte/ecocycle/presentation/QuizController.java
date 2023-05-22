@@ -29,4 +29,11 @@ public class QuizController {
                                             @RequestBody final QuizRequest quizRequest) {
         return ResponseEntity.ok(quizService.add(quizRequest));
     }
+
+    @PostMapping("/today")
+    public ResponseEntity<QuizResponse> giveDailyQuiz(@AuthorizationPrincipal final Long loginId) {
+        final QuizResponse quizResponse = quizService.giveDailyQuiz(loginId);
+        return ResponseEntity.ok(quizResponse);
+    }
+
 }
