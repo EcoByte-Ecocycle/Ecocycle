@@ -60,8 +60,21 @@ const getProductInfo = async (presignedUrl) => {
 
         console.log(data);
         return {data};
+
     } catch (err) {
         console.log(`Error in getProductInfo: ${err}`);
+
+        if(err.response.status == 204) {
+            const tmp = {
+                status: "goReport"
+            }
+
+            return tmp;
+        }
+        else if(err.response.status == 400) {
+            console.alert("이미지를 다시 첨부해주세요");
+            return null;
+        }
     }
 }
 
@@ -82,9 +95,32 @@ const addProductInfo = async (productName, recyclingInfo, tip) => {
             });
 
         console.log(data);
+        return data;
+
     } catch (err) {
         console.log(`Error in addProductInfo: ${err}`);
     }
 }
 
-export { getUserInfo, getPresignedUrl, uploadImage, getProductInfo, addProductInfo };
+const postReport = async(productName, imageUrl) => {
+    const accessToken = localStorage.getItem('token');
+
+    try {
+        const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reports`,
+            {
+                productName: productName,
+                imageUrl: imageUrl
+            },
+            {
+                headers: { Authorization: `Bearer ${accessToken}` }
+            });
+
+        console.log(data);
+
+    } catch (err) {
+        console.log(`Error in addProductInfo: ${err}`);
+    }
+
+}
+
+export { getUserInfo, getPresignedUrl, uploadImage, getProductInfo, addProductInfo, postReport };

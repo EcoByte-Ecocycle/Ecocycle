@@ -50,8 +50,8 @@ const AddProduct = () => {
                 <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo" onClick={goAdmin} /> <br />
                 <img id="admin_img" src="assets/admin.png" alt="Admin logo" /> <br />
                 <span id="add_products">
-                    <div id="box">
-                        <b id="text"> 제품 이름: </b>
+                    <div className="box">
+                        <b className="text"> 제품 이름: </b>
                         <input type="text"
                             id="product_name"
                             name="productName"
@@ -60,8 +60,8 @@ const AddProduct = () => {
                             value={productName}
                         /> <br />
                     </div>
-                    <div id="box">
-                        <b id="text"> 재활용 정보: </b>
+                    <div className="box">
+                        <b className="text"> 재활용 정보: </b>
                         <input type="text"
                             id="recycling_info"
                             name="recyclingInfo"
@@ -70,8 +70,8 @@ const AddProduct = () => {
                             value={recyclingInfo}
                         /> <br />
                     </div>
-                    <div id="box">
-                        <b id="text"> 팁: </b>
+                    <div className="box">
+                        <b className="text"> 팁: </b>
                         <input type="text"
                             id="tip"
                             name="tip"
