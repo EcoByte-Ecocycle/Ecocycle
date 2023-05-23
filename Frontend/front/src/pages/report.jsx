@@ -40,13 +40,7 @@ const Report = () => {
         const presignedUrl = await imageHandler(file);
         const { info } = await getProductInfo(presignedUrl);
 
-        if (info.status === "goReport") {
-
-        } 
-        else if (info !== null) {
-
-            console.log(info.name);
-
+        if (info !== null) {
             setName(info.name);
             setrI(info.recyclingInfo);
             setTip(info.tip);

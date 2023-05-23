@@ -5,6 +5,14 @@
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     text-align: center;
 }
@@ -67,14 +75,19 @@ input [type="text"] {
     background-color: #F5F5F5;
 }
 
-#box {
+.box {
     margin: 30px 10px
 }
 
-#text {
+.text {
     font-family: 'NanumSquareRoundOTF';
     color: #597164;
     font-weight: bolder;
+}
+
+.modal_text {
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
 }
 
 #logo_img {
@@ -158,9 +171,7 @@ input [type="text"] {
 }
 
 #report_footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    margin-top: 200px;
 }
 
 #upload_btn {
@@ -175,10 +186,56 @@ input [type="text"] {
 
 #productInfo_Modal {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400;
+    /* width: 400px; */
     overflow-y: auto;
-    background-color: white;
+    /* background-color: white; */
+}
+
+.modalClose_btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: #597164;
+    background-color: #A9C2B3;
+    border: none;
+
+}
+
+.modal_text{
+    margin: 0px 20px;
+}
+
+#title_text{
+    font-size: 20px;
+
+}
+
+#name_text{
+    font-size: 22px;
+    color: #597164;
+    font-weight: bold;
+}
+
+#producInfo_text {
+    font-size: 18px;
+}
+
+#productInfoModal_span {
+    background-color: #A9C2B3;
+    border-radius: 33px;
+    width: 300px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#tip_text{
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
+    color: #597164;
 }

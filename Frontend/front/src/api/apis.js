@@ -59,17 +59,13 @@ const getProductInfo = async (presignedUrl) => {
             });
 
         console.log(data);
-        return {data};
+        return {info: data};
 
     } catch (err) {
         console.log(`Error in getProductInfo: ${err}`);
 
         if(err.response.status == 204) {
-            const tmp = {
-                status: "goReport"
-            }
-
-            return tmp;
+            //goReport
         }
         else if(err.response.status == 400) {
             console.alert("이미지를 다시 첨부해주세요");
