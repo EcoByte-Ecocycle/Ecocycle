@@ -9,10 +9,14 @@ import lombok.NoArgsConstructor;
 @Getter
 public class DataClassificationResponse {
 
-    @JsonProperty("name")
+    @JsonProperty("productName")
     private String productName;
 
-    public DataClassificationResponse(final String productName) {
+    @JsonProperty("imageUrl")
+    private String imageUrl;
+
+    public DataClassificationResponse(final String productName, final String imageUrl) {
         this.productName = productName;
+        this.imageUrl = imageUrl;
     }
 }
