@@ -2,6 +2,8 @@ package com.ecobyte.ecocycle.acceptance;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.OK;
@@ -60,5 +62,31 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
 
         // then
         errorResponse.statusCode(FORBIDDEN.value());
+    }
+
+    @DisplayName("Data classification 기능이 성공하면 200 OK를 응답한다.")
+    @Test
+    void classify() {
+        // given
+        final String productName = "바나나껍질";
+        given(dataClassificationClient.classifyProduct(anyString()))
+                .willReturn(productName);
+        final String adminToken = loginAdmin();
+        final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest(productName,
+                "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
+        post("/api/products", recyclingProductRequest, adminToken);
+
+        final String accessToken = loginUser();
+        final String url = "imageUrl";
+
+        // when
+        final ValidatableResponse productResponse = get("/api/products?url=" + url, accessToken);
+
+        // then
+        productResponse.statusCode(OK.value())
+                .body("id", notNullValue())
+                .body("name", equalTo(recyclingProductRequest.getName()))
+                .body("recyclingInfo", equalTo(recyclingProductRequest.getRecyclingInfo()))
+                .body("tip", equalTo(recyclingProductRequest.getTip()));
     }
 }

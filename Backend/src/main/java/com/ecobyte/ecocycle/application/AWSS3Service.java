@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AWSS3Service {
 
-    private static final String UPLOAD_FOLDER_PATH = "upload/report-image";
-    
+    private static final String UPLOAD_FOLDER_PATH = "upload/image/";
+
     private final AmazonS3 s3Client;
 
     @Value("${cloud.aws.s3.bucket}")

@@ -5,11 +5,34 @@
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     text-align: center;
 }
 
+section {
+    text-align: center;
+}
+
 .user_btn {
+    padding: 15px 20px;
+    font-size: 24px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+}
+
+.uploadImage_label {
     padding: 15px 20px;
     font-size: 24px;
     font-family: 'NanumSquareRoundOTF';
@@ -41,9 +64,35 @@ body {
     margin-bottom: 30px;
 }
 
+input [type="text"] {
+    width: 200px;
+    height: 50px;
+    /* font-size: 15px; */
+    font-family: 'NanumSquareRoundOTF';
+    border: none;
+    border-radius: 15px;
+    padding-left: 10px;
+    background-color: #F5F5F5;
+}
+
+.box {
+    margin: 30px 10px
+}
+
+.text {
+    font-family: 'NanumSquareRoundOTF';
+    color: #597164;
+    font-weight: bolder;
+}
+
+.modal_text {
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+}
+
 #logo_img {
     margin-top: 130px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 }
 
 #login_btn {
@@ -97,19 +146,17 @@ body {
     min-height: 100vh;
 }
 
-/* #admin_img {} */
+#admin_img {
+    margin-bottom: 26;
+}
 
 #admin_btns {
     text-align: center;
-    margin-bottom: 30;
+    margin-bottom: 26;
 }
 
 #checkReport_btn {
     margin-top: 26px;
-}
-
-#manageQuiz_btn{
-    margin-bottom: 264px;
 }
 
 #logo2_img {
@@ -124,11 +171,71 @@ body {
 }
 
 #report_footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
+    margin-top: 200px;
 }
 
 #upload_btn {
     margin-top: 40px;
+}
+
+#upload_img {
+    margin-top: 30px;
+    width: 300px;
+    margin-bottom: 60px;
+}
+
+#productInfo_Modal {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* width: 400px; */
+    overflow-y: auto;
+    /* background-color: white; */
+}
+
+.modalClose_btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: #597164;
+    background-color: #A9C2B3;
+    border: none;
+
+}
+
+.modal_text{
+    margin: 0px 20px;
+}
+
+#title_text{
+    font-size: 20px;
+
+}
+
+#name_text{
+    font-size: 22px;
+    color: #597164;
+    font-weight: bold;
+}
+
+#producInfo_text {
+    font-size: 18px;
+}
+
+#productInfoModal_span {
+    background-color: #A9C2B3;
+    border-radius: 33px;
+    width: 300px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#tip_text{
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
+    color: #597164;
 }

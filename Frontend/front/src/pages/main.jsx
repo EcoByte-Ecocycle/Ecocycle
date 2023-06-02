@@ -11,16 +11,16 @@ const Main = () => {
     let photoPath;
 
     if (stateOfTree === 'seed') {
-        photoPath = 'assets/userSeed.png';
+        photoPath = 'assets/userSeed.PNG';
     }
     else if (stateOfTree === 'sprout') {
-        photoPath = 'assets/userSprout.png';
+        photoPath = 'assets/userSprout.PNG';
     }
     else if (stateOfTree === 'seedling') {
-        photoPath = 'assets/userSeedling.png';
+        photoPath = 'assets/userSeedling.PNG';
     }
     else if (stateOfTree === 'tree') {
-        photoPath = 'assets/userTree.png'
+        photoPath = 'assets/userTree.png';
     }
 
 
