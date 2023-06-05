@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import imageHandler from '../hooks/ImageHandler';
 import { getProductInfo } from '../api/apis';
 import ProductInfoModal from '../modals/productInfo';
+import GoReportModal from '../modals/goReport';
 
 
 const Report = () => {
@@ -15,6 +16,7 @@ const Report = () => {
     }
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isGoReportModalOpen, setIsGoReportModalOpen] = useState(false);
 
     const [name, setName] = useState(false);
     const [rI, setrI] = useState(false);
@@ -24,11 +26,13 @@ const Report = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const openGoReportModal = () => setIsGoReportModalOpen(true);
+
     const [imgFile, setImgFile] = useState("");
     const imgRef = useRef();
 
 
-    const saveImgFile = async () => { 
+    const saveImgFile = async () => {
 
         const file = imgRef.current.files[0];
         const reader = new FileReader();
@@ -38,15 +42,22 @@ const Report = () => {
         };
 
         const presignedUrl = await imageHandler(file);
+        localStorage.setItem('presignedUrl', presignedUrl);
         const { info } = await getProductInfo(presignedUrl);
 
         if (info !== null) {
-            setName(info.name);
-            setrI(info.recyclingInfo);
-            setTip(info.tip);
+
+            if (info.name === "goReport") {
+                openGoReportModal();
+            }
+            else {
+                setName(info.name);
+                setrI(info.recyclingInfo);
+                setTip(info.tip);
+
+                openModal();
+            }
         }
-        
-        openModal();
     };
 
 
@@ -81,6 +92,9 @@ const Report = () => {
                         </div>
                     </div>
                 </ProductInfoModal>
+
+                <GoReportModal isOpen={isGoReportModalOpen}></GoReportModal>
+
                 <footer id="report_footer">
                     <hr className="line" />
                     <img id="copyright2_img" src="assets/copyright2.png" alt="Copyright by EcoByte" />
