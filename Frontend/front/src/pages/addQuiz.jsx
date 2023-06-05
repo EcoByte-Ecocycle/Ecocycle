@@ -1,6 +1,8 @@
 import '../styles/App.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { addQuizInfo } from '../api/apis';
+
 
 const AddQuiz = () => {
 
