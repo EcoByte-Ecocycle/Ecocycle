@@ -72,12 +72,16 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
     void classify() {
         // given
         final String productName = "바나나껍질";
+        final String productName2 = "볼펜";
         given(dataClassificationClient.classifyProduct(anyString()))
-                .willReturn(List.of(new ClassifiedData(productName, "url")));
+                .willReturn(List.of(new ClassifiedData(productName), new ClassifiedData(productName2)));
         final String adminToken = loginAdmin();
         final RecyclingProductRequest recyclingProductRequest = new RecyclingProductRequest(productName,
                 "종량제에 버려주세요.", "바나나 껍질은 일반쓰레기입니다.");
         post("/api/products", recyclingProductRequest, adminToken);
+        final RecyclingProductRequest recyclingProductRequest2 = new RecyclingProductRequest(productName2,
+                "종량제에 버려주세요.", "볼펜은 일반쓰레기입니다.");
+        post("/api/products", recyclingProductRequest2, adminToken);
 
         final String accessToken = loginUser();
         final String url = "imageUrl";
@@ -88,9 +92,11 @@ public class RecyclingProductAcceptanceTest extends AcceptanceTest {
         // then
         classifiedProductsResponse.statusCode(OK.value())
                 .body("products.id", notNullValue())
-                .body("products.name", containsInAnyOrder(recyclingProductRequest.getName()))
-                .body("products.recyclingInfo", containsInAnyOrder(recyclingProductRequest.getRecyclingInfo()))
-                .body("products.tip", containsInAnyOrder(recyclingProductRequest.getTip()))
-                .body("products.imageUrl", containsInAnyOrder("url"));
+                .body("products.name",
+                        containsInAnyOrder(recyclingProductRequest.getName(), recyclingProductRequest2.getName()))
+                .body("products.recyclingInfo", containsInAnyOrder(recyclingProductRequest.getRecyclingInfo(),
+                        recyclingProductRequest2.getRecyclingInfo()))
+                .body("products.tip",
+                        containsInAnyOrder(recyclingProductRequest.getTip(), recyclingProductRequest2.getTip()));
     }
 }

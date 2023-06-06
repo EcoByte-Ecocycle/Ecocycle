@@ -6,10 +6,8 @@ import lombok.Getter;
 public class ClassifiedData {
 
     private final String productName;
-    private final String imageUrl;
 
-    public ClassifiedData(final String productName, final String imageUrl) {
+    public ClassifiedData(final String productName) {
         this.productName = productName;
-        this.imageUrl = imageUrl;
     }
 }

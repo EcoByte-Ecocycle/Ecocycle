@@ -64,7 +64,7 @@ public class DataClassificationClient {
     private List<ClassifiedData> getClassifiedData(final ResponseEntity<DataClassificationsResponse> response) {
         final DataClassificationsResponse dataClassificationsResponse = Objects.requireNonNull(response.getBody());
         return dataClassificationsResponse.getDatas().stream()
-                .map(data -> new ClassifiedData(data.getProductName(), data.getImageUrl()))
+                .map(data -> new ClassifiedData(data.getProductName()))
                 .collect(Collectors.toList());
     }
 }

@@ -49,6 +49,6 @@ public class RecyclingProductService {
                 .findByName(data.getProductName())
                 .orElseThrow(NoDataException::new);
 
-        return ClassifiedProductResponse.of(recyclingProduct, data.getImageUrl());
+        return ClassifiedProductResponse.of(recyclingProduct);
     }
 }

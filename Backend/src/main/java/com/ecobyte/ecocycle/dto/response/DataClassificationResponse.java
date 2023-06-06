@@ -11,12 +11,4 @@ public class DataClassificationResponse {
 
     @JsonProperty("productName")
     private String productName;
-
-    @JsonProperty("imageUrl")
-    private String imageUrl;
-
-    public DataClassificationResponse(final String productName, final String imageUrl) {
-        this.productName = productName;
-        this.imageUrl = imageUrl;
-    }
 }
