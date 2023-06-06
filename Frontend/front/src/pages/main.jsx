@@ -1,12 +1,32 @@
 import '../styles/App.css';
 import '../styles/reset.css';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import makeMain from '../hooks/MakeMain';
+import { getQuiz, putQuizAnswer } from '../api/apis';
+import DailyQuizModal from '../modals/dailyQuiz';
 
 const Main = () => {
     const movePage = useNavigate();
 
     const { stateOfTree } = makeMain();
+
+    const [isQuizOpen, setIsQuizOpen] = useState(false);
+    const [isAnswerRight, setIsAnswerRight] = useState(false);
+    const [isExpOpen, setIsExpOpen] = useState(false);
+
+    const openQuiz = () => setIsQuizOpen(true);
+    const closeQuiz = () => setIsQuizOpen(false);
+
+    const answerRight = () => setIsAnswerRight(true);
+    const expOpen = () => setIsExpOpen(true);
+    const expClose = () => setIsExpOpen(false);
+
+
+    const [quizId, setQuizId] = useState("");
+    const [content, setContent] = useState(false);
+    const [answer, setAnswer] = useState(false);
+    const [tip, setTip] = useState(false);
 
     let photoPath;
 
@@ -23,6 +43,36 @@ const Main = () => {
         photoPath = 'assets/userTree.png';
     }
 
+    const showQuiz = async () => {
+
+        if (localStorage.getItem('dailyQuiz') === false) { 
+
+            const { quizInfo } = await getQuiz();
+
+            console.log(quizInfo);
+
+            setQuizId(quizInfo.id);
+            setContent(quizInfo.quiz.content);
+            setAnswer(quizInfo.quiz.answer);
+            setTip(quizInfo.quiz.tip);
+
+            openQuiz();
+        }
+    };
+
+    const userAnswer = (userAnswer) => {
+        closeQuiz();
+        if (answer === userAnswer) {
+            setIsAnswerRight(true);
+            
+            putQuizAnswer(quizId, true);
+        }
+        else {
+            putQuizAnswer(quizId, false);
+        }
+
+        expOpen();
+    }
 
     function showMenu() { }
     function goReport() {
@@ -32,11 +82,47 @@ const Main = () => {
         movePage('/mypage');
     }
 
+    useEffect(() => {
+        showQuiz();
+    }, []);
+
     return (
         <div>
             <main id="main_page">
                 <section>
                     <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo" /> <br />
+                    <DailyQuizModal isOpen={isQuizOpen}>
+                        <div className="quiz_modal">
+                            <div className="dailyQuizModal_div">
+                                <div>
+                                    <p className="quiz_title"> EcoQuiz </p>
+                                    <div id="quiz_info">
+                                        <div className="quiz_content">Q. {content}</div>
+                                        <button className="quiz_btn" onClick={() => userAnswer(true)}>O</button>  <button className="quiz_btn" onClick={() => userAnswer(false)}>  X  </button>
+                                    </div>
+                                </div> <br />
+                            </div>
+                        </div>
+                    </DailyQuizModal>
+
+                    <div className="quiz_modal" style={{ display: isExpOpen ? "block" : "none" }}>
+                        <div className="dailyQuizModal_div" >
+                            <button className="modalClose_btn" onClick={expClose}>X</button>
+                            <span className="quiz_span" style={{ display: isAnswerRight ? "block" : "none" }}>
+                                <p className="quiz_title"> EcoQuiz </p>
+                                <p className="quiz_content"> 축하합니다! </p> <p className="quiz_content"> 정답을 맞히셨습니다 </p> <br />
+                                <div className="quiz_tip">Tip. {tip}</div>
+                            </span>
+
+                            <span className="quiz_span" style={{ display: isAnswerRight ? "none" : "block" }}>
+                                <button className="modalClose_btn" onClick={expClose}>X</button>
+                                <p className="quiz_title"> EcoQuiz </p>
+                                <p className="quiz_content"> 아쉽게도 오답입니다ㅠㅠ </p> <br />
+                                <div className="quiz_tip">Tip. {tip}</div>
+                            </span>
+                        </div>
+                    </div>
+
                     <img id="user_tree" src={`${photoPath}`} alt="User Tree" />
                     <footer id="main_footer">
                         <input type="image" id="menu_btn" src="assets/menuBtn.png" alt="Menu Button" onClick={showMenu} />
