@@ -7,7 +7,9 @@
 
 재활용품의 사진을 첨부하면 어떤 재활용이며, 어떻게 재활용 하면 되는 지 안내해주는프로그램 “EcoCycle”
 
-![image](https://user-images.githubusercontent.com/88193038/231222755-7554616b-16c6-4eec-823e-833955d261fc.png)
+<img width="231" alt="image" src="https://github.com/EcoByte-Ecocycle/Ecocycle/assets/88193038/ae607ab9-99b1-4c2a-b63a-799098c4ed87.png">
+<img width="230" alt="image" src="https://github.com/EcoByte-Ecocycle/Ecocycle/assets/88193038/4b93de97-5965-423b-a730-9c50b578b0ca.png">
+<img width="231" alt="image" src="https://github.com/EcoByte-Ecocycle/Ecocycle/assets/88193038/0b25d582-e295-4d65-85c8-9e916436383d.png">
 
 
 사용자의 이미지를 분석하여 재활용 분리배출을 돕는 프로그램. 재활용품의 사진을 첨부하면 어떤 재활용이며, 어떻게 재활용 하면 되는 지 안내해주는프로그램 “EcoCycle” 입니다. 사회적으로, 환경오염에 대한 관심과 필요성이 높아졌습니다. 주변에서 재활용을 하는 학우들을 봤을 때, 쓰레기 분류법이나 배출 방법에 대해 정확히 알지 못해 분리배출하지 못하는 경우를 보았습니다. 따라서 지속 가능한 환 경 조성과 쓰레기 분리와 관련된 교육적인 효과를 위하여 프로그램을 계획했습니다.
