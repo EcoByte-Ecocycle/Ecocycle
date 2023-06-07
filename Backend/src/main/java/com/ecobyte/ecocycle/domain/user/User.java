@@ -39,6 +39,9 @@ public class User {
     @Embedded
     private Stamp stamp;
 
+    @Column
+    private Integer tree;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -51,7 +54,8 @@ public class User {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
-        this.stamp = new Stamp();
+        this.stamp = new Stamp(0);
+        this.tree = 0;
         this.role = role;
     }
 
@@ -61,5 +65,13 @@ public class User {
 
     public boolean isSameId(final Long userId) {
         return id.equals(userId);
+    }
+
+    public void addStamps(final Integer stamps) {
+        if (stamp.isFull(stamps)) {
+            tree++;
+        }
+
+        stamp.add(stamps);
     }
 }
