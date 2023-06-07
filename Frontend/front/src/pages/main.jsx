@@ -83,7 +83,10 @@ const Main = () => {
     }
 
     useEffect(() => {
-        getUserInfo();
+        const saveUserInfo = async () => {
+            await getUserInfo();
+        }
+        saveUserInfo() ;
         showQuiz();
     }, []);
 
