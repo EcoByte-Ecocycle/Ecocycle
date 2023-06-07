@@ -32,6 +32,31 @@ section {
     border: none;
 }
 
+.small_user_btn {
+    margin: 20px 10px;
+    padding: 10px 15px;
+    font-size: 17px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+}
+
+.quiz_btn {
+    padding: 10px 40px;
+    margin: 10px;
+    font-size: 30px;
+    font-family: 'NanumSquareRoundOTF';
+    font-weight: 600;
+    color: #597164;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
+}
+
 .uploadImage_label {
     padding: 15px 20px;
     font-size: 24px;
@@ -64,9 +89,9 @@ section {
     margin-bottom: 30px;
 }
 
-input [type="text"] {
+input[type="text"] {
     width: 200px;
-    height: 50px;
+    height: 70px;
     /* font-size: 15px; */
     font-family: 'NanumSquareRoundOTF';
     border: none;
@@ -74,6 +99,8 @@ input [type="text"] {
     padding-left: 10px;
     background-color: #F5F5F5;
 }
+
+input:focus {outline: none;} 
 
 .box {
     margin: 30px 10px
@@ -88,6 +115,7 @@ input [type="text"] {
 .modal_text {
     font-family: 'NanumSquareRoundOTF';
     color: #F5F5F5;
+    /* margin: 0px 20px; */
 }
 
 #logo_img {
@@ -184,14 +212,20 @@ input [type="text"] {
     margin-bottom: 60px;
 }
 
-#productInfo_Modal {
+.modal {
     position: absolute;
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 400px; */
     overflow-y: auto;
-    /* background-color: white; */
+}
+
+.quiz_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
 }
 
 .modalClose_btn{
@@ -200,13 +234,9 @@ input [type="text"] {
     right: 10px;
     font-size: 22px;
     color: #597164;
-    background-color: #A9C2B3;
+    background-color: transparent;
     border: none;
 
-}
-
-.modal_text{
-    margin: 0px 20px;
 }
 
 #title_text{
@@ -221,7 +251,7 @@ input [type="text"] {
 }
 
 #producInfo_text {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #productInfoModal_span {
@@ -232,10 +262,74 @@ input [type="text"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: auto;
 }
 
 #tip_text{
     font-family: 'Dovemayo_gothic';
-    font-size: 20px;
+    font-size: 18px;
     color: #597164;
+    padding: 0px 10px;
+}
+
+#goReportModal_span {
+    background-color: #FFFFFF;
+    border-radius: 33px;
+    width: 300px;
+    padding: 32px 15px;
+
+    border-style: solid;
+    border-width: 5px;
+    border-color: #B2CABD;
+}
+
+#product_info {
+    padding: 10px 15px;
+}
+
+.dailyQuizModal_div {
+    background-color: #E6EFEA;
+    border-radius: 33px;
+    width: 300px;
+}
+
+.quiz_title {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-family: 'Dovemayo_gothic';
+    font-size: 32px;
+    color: #597164;
+}
+
+#quiz_info {
+    padding: 10px 15px;
+}
+
+.quiz_content {
+    font-family: 'Dovemayo_gothic';
+    font-size: 24px;
+    color: #597164;
+    padding-bottom: 40px;
+}
+
+.quiz_tip {
+    font-family: 'Dovemayo_gothic';
+    font-size: 18px;
+    color: #597164;
+}
+
+.quiz_span {
+    padding: 30px
+}
+
+.result_btn {
+    margin: 20px auto;
+    padding: 10px 15px;
+    font-size: 17px;
+    font-family: 'NanumSquareRoundOTF';
+    color: #F5F5F5;
+    background-color: #B2C9BD;
+    border-radius: 33px;
+    cursor: pointer;
+    border: none;
 }
