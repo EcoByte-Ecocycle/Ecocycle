@@ -1,6 +1,7 @@
 package com.ecobyte.ecocycle.domain.user;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,8 +36,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private Integer stamps;
+    @Embedded
+    private Stamp stamp;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -50,7 +51,7 @@ public class User {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
-        this.stamps = 0;
+        this.stamp = new Stamp();
         this.role = role;
     }
 
