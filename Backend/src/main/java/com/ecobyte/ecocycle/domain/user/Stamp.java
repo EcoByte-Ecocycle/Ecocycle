@@ -26,6 +26,7 @@ public class Stamp {
         return stamps + newStamps >= LIMIT_MAX;
     }
 
+    // TODO: stamps 추가하는 규약도 다 Stamp 클래스로 옮기는 방법 생각
     public void add(final Integer newStamps) {
         stamps = (stamps + newStamps) % LIMIT_MAX;
     }
