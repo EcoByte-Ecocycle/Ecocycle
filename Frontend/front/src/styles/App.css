@@ -21,6 +21,20 @@ section {
     text-align: center;
 }
 
+#loading_page {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #ffffffb7;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .user_btn {
     padding: 15px 20px;
     font-size: 24px;
@@ -57,6 +71,14 @@ section {
     border: none;
 }
 
+#login_footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 100px;
+    width: 100%;
+}
+
 .uploadImage_label {
     padding: 15px 20px;
     font-size: 24px;
@@ -82,11 +104,16 @@ section {
     margin-bottom: 30px;
 }
 
-.line {
+.top_line {
     color: #B2C9BD;
     border: 3px solid #B2C9BD;
     margin-top: 80px;
     margin-bottom: 30px;
+}
+
+.bottom_line {
+    color: #B2C9BD;
+    border: 3px solid #B2C9BD;
 }
 
 input[type="text"] {
@@ -100,7 +127,9 @@ input[type="text"] {
     background-color: #F5F5F5;
 }
 
-input:focus {outline: none;} 
+input:focus {
+    outline: none;
+}
 
 .box {
     margin: 30px 10px
@@ -115,7 +144,8 @@ input:focus {outline: none;}
 .modal_text {
     font-family: 'NanumSquareRoundOTF';
     color: #F5F5F5;
-    /* margin: 0px 20px; */
+    word-break: break-all;
+    padding: 10px 10px;
 }
 
 #logo_img {
@@ -130,10 +160,12 @@ input:focus {outline: none;}
 
 
 #copyright_img {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #copyright2_img {
+    margin-top: 12px;
     margin-bottom: 30px;
 }
 
@@ -198,8 +230,12 @@ input:focus {outline: none;}
     width: 300px;
 }
 
+#wrapper {
+    min-height: calc(100vh - 90px);
+}
+
 #report_footer {
-    margin-top: 200px;
+    height: 70px;
 }
 
 #upload_btn {
@@ -228,7 +264,7 @@ input:focus {outline: none;}
     overflow-y: auto;
 }
 
-.modalClose_btn{
+.modalClose_btn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -239,37 +275,42 @@ input:focus {outline: none;}
 
 }
 
-#title_text{
+#title_text {
     font-size: 20px;
 
 }
 
-#name_text{
+#name_text {
     font-size: 22px;
     color: #597164;
     font-weight: bold;
 }
 
-#producInfo_text {
+.productName_div {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.productInfo_text {
     font-size: 20px;
+    padding: 0px 10px;
 }
 
 #productInfoModal_span {
     background-color: #A9C2B3;
     border-radius: 33px;
-    width: 300px;
-    height: 220px;
+    width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
 }
 
-#tip_text{
+.tip_text {
     font-family: 'Dovemayo_gothic';
     font-size: 18px;
     color: #597164;
-    padding: 0px 10px;
+    padding: 10px 10px;
 }
 
 #goReportModal_span {
@@ -285,6 +326,7 @@ input:focus {outline: none;}
 
 #product_info {
     padding: 10px 15px;
+    font-size: 14px;
 }
 
 .dailyQuizModal_div {
@@ -323,12 +365,12 @@ input:focus {outline: none;}
 }
 
 .result_btn {
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 10px 15px;
     font-size: 17px;
     font-family: 'NanumSquareRoundOTF';
-    color: #F5F5F5;
-    background-color: #B2C9BD;
+    color: #597164;
+    background-color: #F5F5F5; 
     border-radius: 33px;
     cursor: pointer;
     border: none;
