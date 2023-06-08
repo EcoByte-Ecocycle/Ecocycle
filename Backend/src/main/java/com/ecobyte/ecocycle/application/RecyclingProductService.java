@@ -41,7 +41,9 @@ public class RecyclingProductService {
         final RecyclingProduct savedRecyclingProduct = recyclingProductRepository.save(recyclingProduct);
         return RecyclingProductResponse.from(savedRecyclingProduct);
     }
-    public ClassifiedProductsResponse classify(final Long loginId,final String imageUrl) {
+
+    @Transactional
+    public ClassifiedProductsResponse classify(final Long loginId, final String imageUrl) {
         final User user = userRepository.findById(loginId).orElseThrow(UserNotFoundException::new);
         final List<ClassifiedData> classifiedDatas = dataClassificationClient.classifyProduct(imageUrl);
         final List<ClassifiedProductResponse> classifiedProductsResponses = classifiedDatas.stream()
