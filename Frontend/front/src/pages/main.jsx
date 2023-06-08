@@ -3,7 +3,7 @@ import '../styles/reset.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import makeMain from '../hooks/MakeMain';
-import { getQuiz, putQuizAnswer } from '../api/apis';
+import { getUserInfo, getQuiz, putQuizAnswer } from '../api/apis';
 import DailyQuizModal from '../modals/dailyQuiz';
 
 const Main = () => {
@@ -45,7 +45,7 @@ const Main = () => {
 
     const showQuiz = async () => {
 
-        if (localStorage.getItem('dailyQuiz') === false) { 
+        if (localStorage.getItem('dailyQuiz') === 'false') { 
 
             const { quizInfo } = await getQuiz();
 
@@ -63,7 +63,7 @@ const Main = () => {
     const userAnswer = (userAnswer) => {
         closeQuiz();
         if (answer === userAnswer) {
-            setIsAnswerRight(true);
+            answerRight();
             
             putQuizAnswer(quizId, true);
         }
@@ -83,6 +83,10 @@ const Main = () => {
     }
 
     useEffect(() => {
+        const saveUserInfo = async () => {
+            await getUserInfo();
+        }
+        saveUserInfo() ;
         showQuiz();
     }, []);
 

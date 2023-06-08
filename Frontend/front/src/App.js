@@ -3,7 +3,6 @@ import Login from './pages/login';
 import Main from './pages/main';
 import Admin from './pages/admin';
 import Report from './pages/report';
-import Result from './pages/result';
 import AddProduct from './pages/addProduct';
 import AddQuiz from './pages/addQuiz';
 import { Navigate } from "react-router-dom";
