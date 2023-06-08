@@ -1,14 +1,19 @@
 package com.ecobyte.ecocycle.application;
 
+import com.ecobyte.ecocycle.domain.product.ClassifiedData;
 import com.ecobyte.ecocycle.domain.product.RecyclingProduct;
 import com.ecobyte.ecocycle.domain.product.RecyclingProductRepository;
 import com.ecobyte.ecocycle.domain.user.User;
 import com.ecobyte.ecocycle.domain.user.UserRepository;
 import com.ecobyte.ecocycle.dto.request.RecyclingProductRequest;
+import com.ecobyte.ecocycle.dto.response.ClassifiedProductResponse;
+import com.ecobyte.ecocycle.dto.response.ClassifiedProductsResponse;
 import com.ecobyte.ecocycle.dto.response.RecyclingProductResponse;
 import com.ecobyte.ecocycle.exception.NoDataException;
 import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import com.ecobyte.ecocycle.support.DataClassificationClient;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,14 +41,20 @@ public class RecyclingProductService {
         final RecyclingProduct savedRecyclingProduct = recyclingProductRepository.save(recyclingProduct);
         return RecyclingProductResponse.from(savedRecyclingProduct);
     }
-
-    public RecyclingProductResponse classify(final Long loginId, final String imageUrl) {
+    public ClassifiedProductsResponse classify(final Long loginId,final String imageUrl) {
         final User user = userRepository.findById(loginId).orElseThrow(UserNotFoundException::new);
-        final String productName = dataClassificationClient.classifyProduct(imageUrl);
-        final RecyclingProduct recyclingProduct = recyclingProductRepository.findByName(productName)
-                .orElseThrow(NoDataException::new);
-
+        final List<ClassifiedData> classifiedDatas = dataClassificationClient.classifyProduct(imageUrl);
+        final List<ClassifiedProductResponse> classifiedProductsResponses = classifiedDatas.stream()
+                .map(this::getClassifiedProductResponse)
+                .collect(Collectors.toList());
         user.addStamps(10);
-        return RecyclingProductResponse.from(recyclingProduct);
+        return new ClassifiedProductsResponse(classifiedProductsResponses);
+    }
+
+    private ClassifiedProductResponse getClassifiedProductResponse(final ClassifiedData data) {
+        final RecyclingProduct recyclingProduct = recyclingProductRepository
+                .findByName(data.getProductName())
+                .orElseThrow(NoDataException::new);
+        return ClassifiedProductResponse.of(recyclingProduct);
     }
 }
