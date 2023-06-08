@@ -35,7 +35,8 @@ public class RecyclingProductController {
     }
 
     @GetMapping
-    public ResponseEntity<ClassifiedProductsResponse> classify(@RequestParam("url") final String imageUrl) {
-        return ResponseEntity.ok(recyclingProductService.classify(imageUrl));
+    public ResponseEntity<ClassifiedProductsResponse> classify(@AuthorizationPrincipal final Long loginId,
+                                                               @RequestParam("url") final String imageUrl) {
+        return ResponseEntity.ok(recyclingProductService.classify(loginId, imageUrl));
     }
 }
