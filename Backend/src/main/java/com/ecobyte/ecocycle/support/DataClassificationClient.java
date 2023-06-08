@@ -1,9 +1,11 @@
 package com.ecobyte.ecocycle.support;
 
-import com.ecobyte.ecocycle.dto.response.DataClassificationResponse;
+import com.ecobyte.ecocycle.domain.product.ClassifiedData;
+import com.ecobyte.ecocycle.dto.response.DataClassificationsResponse;
 import com.ecobyte.ecocycle.exception.InvalidImageUrlException;
-import com.ecobyte.ecocycle.exception.NoDataException;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +31,7 @@ public class DataClassificationClient {
         this.url = url;
     }
 
-    public String classifyProduct(final String imageUrl) {
+    public List<ClassifiedData> classifyProduct(final String imageUrl) {
         final HttpHeaders headers = getUrlEncodedHeader();
         final HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(null, headers);
         return getClassifiedProductName(httpEntity, imageUrl);
@@ -41,18 +43,15 @@ public class DataClassificationClient {
         return headers;
     }
 
-    private String getClassifiedProductName(final HttpEntity<MultiValueMap<String, String>> httpEntity,
-                                            final String imageUrl) {
+    private List<ClassifiedData> getClassifiedProductName(final HttpEntity<MultiValueMap<String, String>> httpEntity,
+                                                          final String imageUrl) {
         try {
-            ResponseEntity<DataClassificationResponse> response = restTemplate
+            ResponseEntity<DataClassificationsResponse> response = restTemplate
                     .exchange(url + "/api/datas?url=" + imageUrl, HttpMethod.GET, httpEntity,
-                            DataClassificationResponse.class);
+                            DataClassificationsResponse.class);
 
-            if (response.getStatusCode() == HttpStatus.NO_CONTENT) {
-                throw new NoDataException();
-            }
+            return getClassifiedData(response);
 
-            return Objects.requireNonNull(response.getBody()).getProductName();
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
                 throw new InvalidImageUrlException();
@@ -60,5 +59,12 @@ public class DataClassificationClient {
 
             throw e;
         }
+    }
+
+    private List<ClassifiedData> getClassifiedData(final ResponseEntity<DataClassificationsResponse> response) {
+        final DataClassificationsResponse dataClassificationsResponse = Objects.requireNonNull(response.getBody());
+        return dataClassificationsResponse.getDatas().stream()
+                .map(data -> new ClassifiedData(data.getProductName()))
+                .collect(Collectors.toList());
     }
 }
