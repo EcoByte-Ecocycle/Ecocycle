@@ -73,6 +73,7 @@ public class QuizService {
         }
     }
 
+    @Transactional
     private DailyQuiz makeDailyQuiz(final Long userId, final LocalDate attendanceDate) {
         final Quiz quiz = quizRepository.findByRandomOne()
                 .orElseThrow(NoQuizException::new);
