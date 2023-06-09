@@ -13,7 +13,7 @@
     font-style: normal;
 }
 
-body {
+body{
     text-align: center;
 }
 
@@ -151,6 +151,10 @@ input:focus {
 #logo_img {
     margin-top: 130px;
     margin-bottom: 50px;
+}
+
+#mypage_logo {
+    margin-top: 80px;
 }
 
 #login_btn {
@@ -374,4 +378,25 @@ input:focus {
     border-radius: 33px;
     cursor: pointer;
     border: none;
+}
+
+#stamp {
+    width: 390px;
+    margin-top: 60px;
+}
+
+#mypage_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#grade_img {
+    position: absolute;
+    top: 170px;
+}
+
+#arrow_img {
+    margin-top: 20px;
 }
