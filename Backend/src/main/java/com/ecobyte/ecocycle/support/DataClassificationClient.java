@@ -47,7 +47,7 @@ public class DataClassificationClient {
                                                           final String imageUrl) {
         try {
             ResponseEntity<DataClassificationsResponse> response = restTemplate
-                    .exchange(url + "/api/datas?url=" + imageUrl, HttpMethod.GET, httpEntity,
+                    .exchange(url + "/datas?url=" + imageUrl, HttpMethod.GET, httpEntity,
                             DataClassificationsResponse.class);
 
             return getClassifiedData(response);
