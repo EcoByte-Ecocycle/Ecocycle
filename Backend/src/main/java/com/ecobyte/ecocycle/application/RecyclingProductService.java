@@ -9,10 +9,11 @@ import com.ecobyte.ecocycle.dto.request.RecyclingProductRequest;
 import com.ecobyte.ecocycle.dto.response.ClassifiedProductResponse;
 import com.ecobyte.ecocycle.dto.response.ClassifiedProductsResponse;
 import com.ecobyte.ecocycle.dto.response.RecyclingProductResponse;
-import com.ecobyte.ecocycle.exception.NoDataException;
+import com.ecobyte.ecocycle.exception.NoProductInfoException;
 import com.ecobyte.ecocycle.exception.UserNotFoundException;
 import com.ecobyte.ecocycle.support.DataClassificationClient;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,15 +49,21 @@ public class RecyclingProductService {
         final List<ClassifiedData> classifiedDatas = dataClassificationClient.classifyProduct(imageUrl);
         final List<ClassifiedProductResponse> classifiedProductsResponses = classifiedDatas.stream()
                 .map(this::getClassifiedProductResponse)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toList());
         user.addStamps(10);
         return new ClassifiedProductsResponse(classifiedProductsResponses);
     }
 
-    private ClassifiedProductResponse getClassifiedProductResponse(final ClassifiedData data) {
-        final RecyclingProduct recyclingProduct = recyclingProductRepository
-                .findByName(data.getProductName())
-                .orElseThrow(NoDataException::new);
-        return ClassifiedProductResponse.of(recyclingProduct);
+    private Optional<ClassifiedProductResponse> getClassifiedProductResponse(final ClassifiedData data) {
+        try {
+            final RecyclingProduct recyclingProduct = recyclingProductRepository
+                    .findByName(data.getProductName())
+                    .orElseThrow(NoProductInfoException::new);
+            return Optional.of(ClassifiedProductResponse.of(recyclingProduct));
+        } catch (NoProductInfoException e) {
+            return Optional.empty();
+        }
     }
 }

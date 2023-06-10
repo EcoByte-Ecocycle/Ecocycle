@@ -51,7 +51,6 @@ public class DataClassificationClient {
                             DataClassificationsResponse.class);
 
             return getClassifiedData(response);
-
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
                 throw new InvalidImageUrlException();
