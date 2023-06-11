@@ -22,6 +22,7 @@ const Main = () => {
     const [isExpOpen, setIsExpOpen] = useState(false);
 
     const openQuiz = () => setIsQuizOpen(true);
+
     const closeQuiz = () => setIsQuizOpen(false);
 
     const answerRight = () => setIsAnswerRight(true);
@@ -37,7 +38,7 @@ const Main = () => {
 
     const showTree = () => {
 
-        const { stateOfTree } = makeMain();
+        const {stateOfTree} = makeMain();
 
         if (stateOfTree === 'seed') {
             setPhotoPath('assets/userSeed.PNG');
@@ -50,7 +51,6 @@ const Main = () => {
         }
     }
 
-   
 
     const showQuiz = async () => {
 
@@ -103,11 +103,11 @@ const Main = () => {
             showQuiz();
         }
         show();
-    });
+    }, []);
 
     return (
         <div>
-            {loading ? <Loading /> : null}
+            {loading ? <Loading/> : null}
             <main id="main_page">
                 <section>
                     <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo"/> <br/>
