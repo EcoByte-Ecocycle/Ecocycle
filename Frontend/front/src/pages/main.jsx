@@ -5,11 +5,17 @@ import {useEffect, useState} from 'react';
 import makeMain from '../hooks/MakeMain';
 import {getQuiz, getUserInfo, putQuizAnswer} from '../api/apis';
 import DailyQuizModal from '../modals/dailyQuiz';
+import Loading from '../Loading';
 
 const Main = () => {
-    const movePage = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const startLoading = () => setLoading(true);
+    const endLoading = () => setLoading(false);
 
-    const {stateOfTree} = makeMain();
+    const [photoPath, setPhotoPath] = useState("");
+
+
+    const movePage = useNavigate();
 
     const [isQuizOpen, setIsQuizOpen] = useState(false);
     const [isAnswerRight, setIsAnswerRight] = useState(false);
@@ -28,19 +34,27 @@ const Main = () => {
     const [answer, setAnswer] = useState(false);
     const [tip, setTip] = useState(false);
 
-    let photoPath;
 
-    if (stateOfTree === 'seed') {
-        photoPath = 'assets/userSeed.PNG';
-    } else if (stateOfTree === 'sprout') {
-        photoPath = 'assets/userSprout.PNG';
-    } else if (stateOfTree === 'seedling') {
-        photoPath = 'assets/userSeedling.PNG';
-    } else if (stateOfTree === 'tree') {
-        photoPath = 'assets/userTree.png';
+    const showTree = () => {
+
+        const { stateOfTree } = makeMain();
+
+        if (stateOfTree === 'seed') {
+            setPhotoPath('assets/userSeed.PNG');
+        } else if (stateOfTree === 'sprout') {
+            setPhotoPath('assets/userSprout.PNG');
+        } else if (stateOfTree === 'seedling') {
+            setPhotoPath('assets/userSeedling.PNG');
+        } else if (stateOfTree === 'tree') {
+            setPhotoPath('assets/userTree.png');
+        }
     }
 
+   
+
     const showQuiz = async () => {
+
+        console.log("showQuiz");
 
         if (localStorage.getItem('dailyQuiz') === 'false') {
 
@@ -84,6 +98,8 @@ const Main = () => {
     useEffect(() => {
         const show = async () => {
             await getUserInfo();
+            showTree();
+            endLoading();
             showQuiz();
         }
         show();
@@ -91,6 +107,7 @@ const Main = () => {
 
     return (
         <div>
+            {loading ? <Loading /> : null}
             <main id="main_page">
                 <section>
                     <img id="logo_img" src="assets/logo.png" alt="EcoCycle logo"/> <br/>
