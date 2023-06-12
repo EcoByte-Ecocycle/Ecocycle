@@ -7,7 +7,6 @@ const imageHandler = async (imageFile) => {
     await uploadImage(presignedUrl, imageFile);
 
     const tmp = presignedUrl.split("?");
-    console.log(tmp[0]);
     return tmp[0];
 }
 
