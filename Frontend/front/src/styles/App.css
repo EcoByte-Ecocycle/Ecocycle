@@ -381,8 +381,7 @@ input:focus {
 }
 
 #stamp {
-    width: 390px;
-    margin-top: 60px;
+    width: 300px;
 }
 
 #mypage_section {
@@ -393,10 +392,9 @@ input:focus {
 }
 
 #grade_img {
-    position: absolute;
-    top: 170px;
+    width: 150px;
 }
 
-#arrow_img {
-    margin-top: 20px;
+#total_stamp {
+    margin: 20px 0px;
 }
