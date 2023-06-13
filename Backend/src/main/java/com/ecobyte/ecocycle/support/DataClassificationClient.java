@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -52,7 +51,11 @@ public class DataClassificationClient {
 
             return getClassifiedData(response);
         } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+            if (e.getStatusCode().is4xxClientError()) {
+                throw new InvalidImageUrlException();
+            }
+
+            if (e.getStatusCode().is5xxServerError()) {
                 throw new InvalidImageUrlException();
             }
 
