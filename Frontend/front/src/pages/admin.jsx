@@ -8,9 +8,6 @@ const Admin = () => {
     function goCheckReport() {
         movePage('/checkReport');
     }
-    function goManageUsers() {
-        movePage('/manageUsers');
-    }
     function goAddQuiz() {
         movePage('/addQuiz');
     }
@@ -25,7 +22,6 @@ const Admin = () => {
                 <img id="admin_img" src="assets/admin.png" alt="EcoCycle logo" /> <br />
                 <span id="admin_btns">
                     <button className="admin_btn" id="checkReport_btn">제보 확인</button> <br />
-                    <button className="admin_btn" id="manageUser_btn">사용자 관리</button> <br />
                     <button className="admin_btn" id="manageQuiz_btn" onClick={goAddQuiz}>퀴즈 관리</button> <br />
                     <button className="admin_btn" id="addProduct_btn" onClick={goAddProduct}>제품 추가</button>
                 </span>
