@@ -28,7 +28,6 @@ const getQuiz = async () => {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
 
-        console.log(data);
         return { quizInfo: data };
 
     } catch (err) {
@@ -39,8 +38,6 @@ const getQuiz = async () => {
 const putQuizAnswer = async (quizId, userRight) => {
     const accessToken = localStorage.getItem('token');
 
-    console.log(quizId);
-
     try {
         const { data } = await axios.put(`${process.env.REACT_APP_SERVER_URL}/quizzes/today/${quizId}`,
             {
@@ -49,8 +46,6 @@ const putQuizAnswer = async (quizId, userRight) => {
             {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
-
-        console.log(data);
 
     } catch (err) {
         console.log(`Error in getQuiz: ${err}`);
@@ -75,7 +70,6 @@ const getPresignedUrl = async () => {
 }
 
 const uploadImage = (presignedUrl, file) => {
-    console.log("presigned URL: ", presignedUrl);
 
     const res = fetch(
         new Request(presignedUrl, {
@@ -99,8 +93,6 @@ const getProductInfo = async (presignedUrl) => {
                 headers: { Authorization: `Bearer ${accessToken}` },
                 params: { url: presignedUrl },
             });
-
-        console.log(data);
 
         return { info: data };
 
@@ -128,7 +120,6 @@ const addProductInfo = async (productName, recyclingInfo, tip) => {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
 
-        console.log(data);
         return data;
 
     } catch (err) {
@@ -138,8 +129,6 @@ const addProductInfo = async (productName, recyclingInfo, tip) => {
 
 const addQuizInfo = async (content, answer, tip) => {
     const accessToken = localStorage.getItem('token');
-
-    console.log(content, answer, tip);
 
     try {
         const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/quizzes`,
@@ -152,7 +141,6 @@ const addQuizInfo = async (content, answer, tip) => {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
 
-        console.log(data);
         return data;
 
     } catch (err) {
@@ -176,12 +164,12 @@ const postReport = async (productName) => {
                 headers: { Authorization: `Bearer ${accessToken}` }
             });
 
-        console.log(data);
-
     } catch (err) {
         console.log(`Error in addProductInfo: ${err}`);
     }
 
 }
+
+
 
 export { getUserInfo, getQuiz, putQuizAnswer, getPresignedUrl, uploadImage, getProductInfo, addProductInfo, addQuizInfo, postReport };

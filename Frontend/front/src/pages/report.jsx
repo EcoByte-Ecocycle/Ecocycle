@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import '../styles/reset.css';
 import { useNavigate } from 'react-router-dom';
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import imageHandler from '../hooks/ImageHandler';
 import { getProductInfo } from '../api/apis';
 import ProductInfoModal from '../modals/productInfo';
@@ -11,7 +11,7 @@ import Loading from '../Loading';
 
 const Report = () => {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const startLoading = () => setLoading(true);
     const endLoading = () => setLoading(false);
 
@@ -44,7 +44,10 @@ const Report = () => {
     }
 
     const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => {
+        setIsModalOpen(false);
+        window.location.reload();
+    }
 
     const openGoReportModal = () => setIsGoReportModalOpen(true);
 
@@ -67,7 +70,6 @@ const Report = () => {
         localStorage.setItem('presignedUrl', presignedUrl);
         const { info } = await getProductInfo(presignedUrl);
 
-
         if (info.products.length === 0) {
             openGoReportModal();
             endLoading();
@@ -88,6 +90,10 @@ const Report = () => {
             openModal();
         }
     };
+
+    useEffect(() => {
+        setTimeout(() => endLoading(), 500);
+    }, []);
 
 
     return (
