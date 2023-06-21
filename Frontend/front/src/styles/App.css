@@ -398,3 +398,62 @@ input:focus {
 #total_stamp {
     margin: 20px 0px;
 }
+
+#menu_img {
+    position: relative;
+    top: 30px;
+    width: 60px;
+}
+
+.menu_title {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-family: 'Dovemayo_gothic';
+    font-size: 28px;
+    color: #597164;
+}
+
+.menu_text {
+    font-family: 'Dovemayo_gothic';
+    font-size: 20px;
+    color: #597164;
+    padding-left: 60px;
+    padding-top: 5px; 
+}
+
+#nickname_btn {
+    text-decoration: underline;
+    color: #597164;
+    background: none;
+    border: none;
+    font-weight: bolder;
+    
+    position: relative;
+    left : 90px;
+    top: 3px;
+}
+
+.menu_line {
+    color: #597164;
+    border: 1px solid #597164;
+}
+
+.menu_btn {
+    color: #597164;
+    background: none;
+    border: none;
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 5px 0px;
+}
+
+.menu_div {
+    background-color: #E6EFEA;
+    border-radius: 33px;
+    width: 280px;
+    height: 300px;
+}
+
+.menu_div2 {
+    margin-top: 30px;
+}

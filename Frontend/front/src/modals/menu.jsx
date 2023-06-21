@@ -1,6 +1,6 @@
 import '../styles/App.css';
 
-function DailyQuizModal({isOpen, children}) {
+function MenuModal({isOpen, children}) {
     return (
         <div id="dailyQuiz_Modal" style={{ display: isOpen ? "block" : "none" }}>
             <div>{children}</div>
@@ -8,4 +8,4 @@ function DailyQuizModal({isOpen, children}) {
     );
 }
 
-export default DailyQuizModal;
+export default MenuModal;
