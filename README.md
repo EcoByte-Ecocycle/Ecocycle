@@ -2,6 +2,9 @@
 
 #  1. 프로젝트에 대한 정보 
 
+유튜브 시연 영상 : 
+</br>
+
 [![Video Label](http://img.youtube.com/vi/TbqK42kQlJs/0.jpg)](https://youtu.be/TbqK42kQlJs)
 </br>
 블로그 : https://velog.io/@thdalwh3867/series/Capstone-Design-Project
