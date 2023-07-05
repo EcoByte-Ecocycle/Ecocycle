@@ -1,12 +1,17 @@
 # Ecocycle
+# 0. 목차
+[1. 프로젝트에 대한 정보](#1-프로젝트에-대한-정보)
+[2. 시작 가이드](#2-시작-가이드)
+3. 기술 스택
+4. 화면 구성/API 주소
+5. 주요기능
+6. 아키텍처
 
-#  1. 프로젝트에 대한 정보 
-유튜브 시연 영상 : 
-</br>
-
+# 1. 프로젝트에 대한 정보 
+### Youtube Demo Video, 유튜브 시연 영상 : 
 [![Video Label](http://img.youtube.com/vi/TbqK42kQlJs/0.jpg)](https://youtu.be/TbqK42kQlJs)
-</br>
-블로그 : https://velog.io/@thdalwh3867/series/Capstone-Design-Project
+### PDF : 
+### Blog : https://velog.io/@thdalwh3867/series/Capstone-Design-Project
 </br>
 
 재활용품의 사진을 첨부하면 어떤 재활용이며, 어떻게 재활용 하면 되는 지 안내해주는프로그램 “EcoCycle”
