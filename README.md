@@ -1,11 +1,11 @@
 # Ecocycle
 # 0. 목차
-[1. 프로젝트에 대한 정보](#1-프로젝트에-대한-정보)
-[2. 시작 가이드](#2-시작-가이드)
-3. 기술 스택
-4. 화면 구성/API 주소
-5. 주요기능
-6. 아키텍처
+[1. 프로젝트에 대한 정보](#1-프로젝트에-대한-정보)  
+[2. 시작 가이드](#2-시작-가이드)  
+[3. 기술 스택](#3-기술-스택)  
+[4. 화면구성](#4-화면구성)  
+[5. 주요기능](#5-주요기능)  
+[6. 아키텍처](#6-아키텍쳐)
 
 # 1. 프로젝트에 대한 정보 
 ### Youtube Demo Video, 유튜브 시연 영상 : 
@@ -44,13 +44,13 @@ AI : 모델링 : python, jupiternotebook , Pytorch라이브러리, Selenium패�
 협업툴 : notion, git (각자 branch작업, Kanban으로 진행상황 확인), Google meet(회의)
 </br>
 
-#  4. 화면 구성/API 주소 
+#  4. 화면구성
 
 <img width="820" alt="image" src="https://user-images.githubusercontent.com/88193038/231219158-0deb56c9-d88d-4427-9ebc-d9774643dfdd.png">
 
 </br>
 
-#  5. 주요 기능 
+#  5. 주요기능
 
 
 ### 사진 찍기, 제보 화면
@@ -65,7 +65,7 @@ AI : 모델링 : python, jupiternotebook , Pytorch라이브러리, Selenium패�
 
 
 
-# 6. 아키텍쳐.
+# 6. 아키텍쳐
 
 ### 기능 별 로직
 <img width="698" alt="image" src="https://user-images.githubusercontent.com/88193038/231219615-c0333141-602f-4796-a119-f470d7f44dd3.png">
